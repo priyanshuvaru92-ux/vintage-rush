@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* ========================================
+   VINTAGE RUSH — Global Design System
+   ======================================== */
+
+@theme {
+  --color-primary: #111111;
+  --color-secondary: #F5E9D7;
+  --color-accent: #4B352A;
+  --color-surface: #1a1a1a;
+  --color-surface-light: #222222;
+  --color-muted: #888888;
+
+  --font-poppins: "Poppins", sans-serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+::-webkit-scrollbar-thumb {
+  background: #4B352A;
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: #4B352A;
+  color: #F5E9D7;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbar on mobile filter drawer */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
