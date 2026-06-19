@@ -1,22 +1,27 @@
+import SEO from "@/components/SEO";
 import HeroSection from "@/sections/HeroSection";
 import NewArrivalsSection from "@/sections/NewArrivalsSection";
-import TrendingSection from "@/sections/TrendingSection";
+import CollectionsSection from "@/sections/CollectionsSection";
 import BestSellersSection from "@/sections/BestSellersSection";
+import BrandStorySection from "@/sections/BrandStorySection";
 import WhyUsSection from "@/sections/WhyUsSection";
+import InstagramGallerySection from "@/sections/InstagramGallerySection";
 import NewsletterSection from "@/sections/NewsletterSection";
-import SEO from "@/components/SEO";
+
 export default function HomePage() {
   return (
     <>
       <SEO 
-        title="Vintage Rush | Premium Streetwear Clothing" 
-        description="Discover premium streetwear and fashion inspired by the latest trends. Shop Vintage Rush for oversized tees, hoodies, cargos, and more."
+        title="Vintage Rush | Premium Indian Streetwear" 
+        description="Discover premium Indian streetwear born in Surat. Shop Vintage Rush for oversized tees, cargos, hoodies and more. Wear the Trend. Own the Rush."
       />
       <HeroSection />
       <NewArrivalsSection />
-      <TrendingSection />
+      <CollectionsSection />
       <BestSellersSection />
+      <BrandStorySection />
       <WhyUsSection />
+      <InstagramGallerySection />
       <NewsletterSection />
     </>
   );

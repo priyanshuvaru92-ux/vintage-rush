@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { motion } from 'framer-motion';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleLoginButton from './GoogleLoginButton';
 
@@ -9,6 +9,7 @@ export default function SignupForm() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -21,95 +22,139 @@ export default function SignupForm() {
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        data: {
-          full_name: fullName,
-        },
-      },
+      options: { data: { full_name: fullName } },
     });
 
     if (error) {
       setError(error.message);
       setLoading(false);
     } else {
-      // Automatic login usually happens if email confirmation is off.
       navigate('/account');
     }
   };
 
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    padding: "0 0 12px 0",
+    background: "transparent",
+    border: "none",
+    borderBottom: "1px solid rgba(255,255,255,0.12)",
+    color: "#f5f0eb",
+    fontFamily: '"DM Sans", sans-serif',
+    fontSize: "15px",
+    outline: "none",
+    transition: "border-color 0.3s",
+  };
+
   return (
-    <div className="w-full max-w-md mx-auto space-y-6">
-      <div className="text-center">
-        <h2 className="font-poppins text-3xl font-bold text-white tracking-tight">Join the Rush</h2>
-        <p className="mt-2 text-white/50 font-inter text-sm">Create an account to track orders and save your wishlist.</p>
+    <div style={{ width: "100%", maxWidth: "420px", margin: "0 auto" }}>
+      {/* Logo */}
+      <div style={{ textAlign: "center", marginBottom: "48px" }}>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "28px", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#f5f0eb" }}>
+            VINTAGE RUSH
+          </span>
+        </Link>
       </div>
 
-      <form onSubmit={handleSignup} className="space-y-4">
+      <div style={{ marginBottom: "36px" }}>
+        <h1 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "42px", fontWeight: 400, color: "#f5f0eb", marginBottom: "8px", lineHeight: 1 }}>
+          Join the Rush
+        </h1>
+        <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "14px", color: "rgba(245,240,235,0.45)" }}>
+          Create your account to track orders and save your wishlist.
+        </p>
+      </div>
+
+      <form onSubmit={handleSignup}>
         {error && (
-          <div className="p-3 text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg font-inter">
+          <div style={{ padding: "12px 16px", marginBottom: "24px", background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.2)", fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "#f87171" }}>
             {error}
           </div>
         )}
-        <div className="space-y-1">
-          <label className="text-xs font-inter uppercase tracking-widest text-white/50 ml-1">Full Name</label>
+
+        <div style={{ marginBottom: "28px" }}>
+          <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,240,235,0.4)", display: "block", marginBottom: "12px" }}>
+            Full Name
+          </label>
           <input
             type="text"
             required
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            className="w-full px-5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white font-inter focus:outline-none focus:border-secondary/50 transition-colors duration-300"
-            placeholder="John Doe"
+            style={inputStyle}
+            placeholder="Your name"
+            onFocus={e => (e.target.style.borderBottomColor = "#c9a96e")}
+            onBlur={e => (e.target.style.borderBottomColor = "rgba(255,255,255,0.12)")}
           />
         </div>
-        <div className="space-y-1">
-          <label className="text-xs font-inter uppercase tracking-widest text-white/50 ml-1">Email</label>
+
+        <div style={{ marginBottom: "28px" }}>
+          <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,240,235,0.4)", display: "block", marginBottom: "12px" }}>
+            Email
+          </label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white font-inter focus:outline-none focus:border-secondary/50 transition-colors duration-300"
+            style={inputStyle}
             placeholder="you@example.com"
+            onFocus={e => (e.target.style.borderBottomColor = "#c9a96e")}
+            onBlur={e => (e.target.style.borderBottomColor = "rgba(255,255,255,0.12)")}
           />
         </div>
-        <div className="space-y-1">
-          <label className="text-xs font-inter uppercase tracking-widest text-white/50 ml-1">Password</label>
-          <input
-            type="password"
-            required
-            minLength={6}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white font-inter focus:outline-none focus:border-secondary/50 transition-colors duration-300"
-            placeholder="••••••••"
-          />
+
+        <div style={{ marginBottom: "40px" }}>
+          <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,240,235,0.4)", display: "block", marginBottom: "12px" }}>
+            Password
+          </label>
+          <div style={{ position: "relative" }}>
+            <input
+              type={showPass ? "text" : "password"}
+              required
+              minLength={6}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{ ...inputStyle, paddingRight: "40px" }}
+              placeholder="Minimum 6 characters"
+              onFocus={e => (e.target.style.borderBottomColor = "#c9a96e")}
+              onBlur={e => (e.target.style.borderBottomColor = "rgba(255,255,255,0.12)")}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPass(!showPass)}
+              style={{ position: "absolute", right: 0, top: 0, background: "none", border: "none", cursor: "pointer", color: "rgba(245,240,235,0.4)", padding: "4px" }}
+            >
+              {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
+            </button>
+          </div>
         </div>
 
         <motion.button
-          whileHover={{ scale: 1.02 }}
+          whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
           type="submit"
           disabled={loading}
-          className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-secondary text-primary font-poppins text-sm font-semibold tracking-widest uppercase rounded-xl hover:bg-white transition-colors duration-300 disabled:opacity-50"
+          className="btn-primary"
+          style={{ width: "100%", marginBottom: "24px", justifyContent: "center" }}
         >
-          {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create Account'}
+          {loading ? <Loader2 size={18} style={{ animation: "spin 1s linear infinite" }} /> : 'Create Account'}
         </motion.button>
       </form>
 
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-white/10"></div>
-        </div>
-        <div className="relative flex justify-center text-xs uppercase tracking-widest font-inter">
-          <span className="bg-[#111111] px-4 text-white/30">Or sign up with</span>
-        </div>
+      <div style={{ position: "relative", textAlign: "center", marginBottom: "24px" }}>
+        <div style={{ position: "absolute", inset: "50% 0 0", borderTop: "1px solid rgba(255,255,255,0.08)" }} />
+        <span style={{ position: "relative", display: "inline-block", padding: "0 16px", background: "#080808", fontFamily: '"DM Sans", sans-serif', fontSize: "11px", color: "rgba(245,240,235,0.3)", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+          or
+        </span>
       </div>
 
       <GoogleLoginButton label="Sign up with Google" />
 
-      <p className="text-center font-inter text-sm text-white/50">
+      <p style={{ textAlign: "center", fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "rgba(245,240,235,0.4)", marginTop: "32px" }}>
         Already have an account?{' '}
-        <Link to="/login" className="text-secondary hover:underline font-medium">
+        <Link to="/login" style={{ color: "#e8dfd0", textDecoration: "none", fontWeight: 600 }}>
           Sign in
         </Link>
       </p>

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Heart, ShoppingBag, Menu, X, User } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Search, Heart, ShoppingBag, Menu, X } from "lucide-react";
 import UserDropdown from "@/components/auth/UserDropdown";
+import { useCart } from "@/hooks/useCart";
+import { useWishlist } from "@/hooks/useWishlist";
 
 const navLinks = [
-  { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
   { label: "New Arrivals", href: "/shop?filter=new" },
   { label: "Best Sellers", href: "/shop?filter=bestseller" },
@@ -18,6 +18,11 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { cartItems } = useCart();
+  const { wishlistItems } = useWishlist();
+
+  const cartCount = cartItems.reduce((sum: number, item: any) => sum + (item.quantity || 1), 0);
+  const wishlistCount = wishlistItems.length;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -40,79 +45,127 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          scrolled
-            ? "bg-[#111111]/90 backdrop-blur-xl border-b border-white/5 shadow-2xl"
-            : "bg-transparent"
-        )}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          transition: "all 0.5s ease",
+          background: scrolled ? "rgba(8,8,8,0.92)" : "transparent",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "none",
+        }}
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+        <nav style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "72px" }}>
+            
             {/* Logo */}
-            <Link to="/" className="flex-shrink-0 group">
-              <h1 className="font-poppins text-lg sm:text-xl lg:text-2xl font-bold tracking-[0.25em] uppercase text-white group-hover:text-secondary transition-colors duration-300">
-                Vintage Rush
-              </h1>
+            <Link to="/" style={{ textDecoration: "none", flexShrink: 0 }}>
+              <span style={{
+                fontFamily: '"Cormorant Garamond", Georgia, serif',
+                fontSize: "clamp(16px, 2vw, 22px)",
+                fontWeight: 600,
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                color: "#f5f0eb",
+                transition: "color 0.3s ease",
+              }}>
+                VINTAGE RUSH
+              </span>
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div style={{ display: "none", alignItems: "center", gap: "40px" }} className="nav-desktop">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={cn(
-                    "relative font-inter text-sm tracking-wide uppercase transition-colors duration-300",
-                    location.pathname === link.href
-                      ? "text-secondary"
-                      : "text-white/70 hover:text-white"
-                  )}
+                  className="underline-grow"
+                  style={{
+                    fontFamily: '"DM Sans", sans-serif',
+                    fontSize: "11px",
+                    fontWeight: 500,
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: location.pathname === link.href.split("?")[0] ? "#e8dfd0" : "rgba(245,240,235,0.55)",
+                    textDecoration: "none",
+                    transition: "color 0.3s ease",
+                  }}
                 >
                   {link.label}
-                  {location.pathname === link.href && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-secondary"
-                    />
-                  )}
                 </Link>
               ))}
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-3 sm:gap-4">
-              <button className="p-2 text-white/70 hover:text-secondary transition-colors duration-300 hidden sm:block" aria-label="Search">
-                <Search size={20} />
-              </button>
-              <Link to="/shop" className="p-2 text-white/70 hover:text-secondary transition-colors duration-300 relative" aria-label="Wishlist">
-                <Heart size={20} />
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-secondary text-primary text-[10px] font-bold rounded-full flex items-center justify-center">
-                  0
-                </span>
-              </Link>
-              <button className="p-2 text-white/70 hover:text-secondary transition-colors duration-300 relative" aria-label="Cart">
-                <ShoppingBag size={20} />
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-secondary text-primary text-[10px] font-bold rounded-full flex items-center justify-center">
-                  0
-                </span>
-              </button>
-              
-              <UserDropdown />
-              
+            <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
               <button
-                className="lg:hidden p-2 text-white/70 hover:text-white transition-colors"
+                style={{ padding: "8px", color: "rgba(245,240,235,0.6)", background: "none", border: "none", cursor: "pointer", transition: "color 0.3s", display: "none" }}
+                className="action-btn"
+                aria-label="Search"
+              >
+                <Search size={18} />
+              </button>
+
+              <Link
+                to="/shop"
+                style={{ padding: "8px", color: "rgba(245,240,235,0.6)", textDecoration: "none", position: "relative", transition: "color 0.3s", display: "flex" }}
+                aria-label="Wishlist"
+              >
+                <Heart size={18} />
+                {wishlistCount > 0 && (
+                  <span style={{
+                    position: "absolute", top: "2px", right: "2px",
+                    width: "16px", height: "16px",
+                    background: "#c9a96e", color: "#080808",
+                    fontSize: "9px", fontWeight: 700,
+                    borderRadius: "50%", display: "flex",
+                    alignItems: "center", justifyContent: "center",
+                    fontFamily: '"DM Sans", sans-serif',
+                  }}>
+                    {wishlistCount}
+                  </span>
+                )}
+              </Link>
+
+              <Link
+                to="/checkout"
+                style={{ padding: "8px", color: "rgba(245,240,235,0.6)", textDecoration: "none", position: "relative", transition: "color 0.3s", display: "flex" }}
+                aria-label="Cart"
+              >
+                <ShoppingBag size={18} />
+                {cartCount > 0 && (
+                  <span style={{
+                    position: "absolute", top: "2px", right: "2px",
+                    width: "16px", height: "16px",
+                    background: "#e8dfd0", color: "#080808",
+                    fontSize: "9px", fontWeight: 700,
+                    borderRadius: "50%", display: "flex",
+                    alignItems: "center", justifyContent: "center",
+                    fontFamily: '"DM Sans", sans-serif',
+                  }}>
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
+
+              <UserDropdown />
+
+              <button
+                style={{ padding: "8px", color: "rgba(245,240,235,0.7)", background: "none", border: "none", cursor: "pointer" }}
+                className="mobile-menu-btn"
                 onClick={() => setMobileOpen(true)}
                 aria-label="Open menu"
               >
-                <Menu size={24} />
+                <Menu size={22} />
               </button>
             </div>
           </div>
         </nav>
       </motion.header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -120,69 +173,70 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+              style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)", zIndex: 50 }}
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-[#111111] border-l border-white/10 z-50 flex flex-col"
+              transition={{ type: "spring", damping: 28, stiffness: 220 }}
+              style={{
+                position: "fixed", top: 0, right: 0, bottom: 0,
+                width: "300px", maxWidth: "85vw",
+                background: "#111111",
+                borderLeft: "1px solid rgba(255,255,255,0.08)",
+                zIndex: 51, display: "flex", flexDirection: "column",
+              }}
             >
-              <div className="flex items-center justify-between p-6 border-b border-white/10">
-                <span className="font-poppins text-lg font-bold tracking-[0.2em] uppercase text-secondary">
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "24px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                <span style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: "18px", fontWeight: 500, letterSpacing: "0.25em", color: "#e8dfd0", textTransform: "uppercase" }}>
                   Menu
                 </span>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 text-white/70 hover:text-white transition-colors"
+                  style={{ padding: "8px", color: "rgba(245,240,235,0.6)", background: "none", border: "none", cursor: "pointer" }}
                   aria-label="Close menu"
                 >
-                  <X size={24} />
+                  <X size={22} />
                 </button>
               </div>
-              <div className="flex-1 flex flex-col gap-1 p-6">
+
+              <div style={{ flex: 1, padding: "32px 24px", display: "flex", flexDirection: "column", gap: "4px" }}>
+                <Link
+                  to="/"
+                  style={{ padding: "12px 0", fontFamily: '"DM Sans", sans-serif', fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,240,235,0.7)", textDecoration: "none", borderBottom: "1px solid rgba(255,255,255,0.04)", display: "block" }}
+                >
+                  Home
+                </Link>
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
-                    initial={{ x: 30, opacity: 0 }}
+                    initial={{ x: 20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: i * 0.08 }}
+                    transition={{ delay: i * 0.07 }}
                   >
                     <Link
                       to={link.href}
-                      className={cn(
-                        "block py-3 px-4 font-inter text-base tracking-wide uppercase rounded-lg transition-all duration-300",
-                        location.pathname === link.href
-                          ? "text-secondary bg-white/5"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
-                      )}
+                      style={{
+                        padding: "12px 0",
+                        fontFamily: '"DM Sans", sans-serif',
+                        fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase",
+                        color: location.pathname === link.href.split("?")[0] ? "#e8dfd0" : "rgba(245,240,235,0.5)",
+                        textDecoration: "none",
+                        borderBottom: "1px solid rgba(255,255,255,0.04)",
+                        display: "block",
+                        transition: "color 0.3s",
+                      }}
                     >
                       {link.label}
                     </Link>
                   </motion.div>
                 ))}
-                
-                {/* Mobile Auth Link */}
-                <motion.div
-                  initial={{ x: 30, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: navLinks.length * 0.08 }}
-                  className="mt-4 pt-4 border-t border-white/10"
-                >
-                  <Link
-                    to="/account"
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 font-inter text-base tracking-wide uppercase text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300"
-                  >
-                    <User size={18} />
-                    Account
-                  </Link>
-                </motion.div>
               </div>
-              <div className="p-6 border-t border-white/10">
-                <p className="text-white/30 text-xs font-inter uppercase tracking-widest">
+
+              <div style={{ padding: "24px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", color: "rgba(245,240,235,0.25)", letterSpacing: "0.15em", textTransform: "uppercase" }}>
                   © 2026 Vintage Rush
                 </p>
               </div>
@@ -190,6 +244,15 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
+
+      {/* Inline styles for responsive desktop nav */}
+      <style>{`
+        @media (min-width: 1024px) {
+          .nav-desktop { display: flex !important; }
+          .action-btn { display: flex !important; }
+          .mobile-menu-btn { display: none !important; }
+        }
+      `}</style>
     </>
   );
 }

@@ -20,6 +20,8 @@ const OrderSuccessPage = React.lazy(() => import("@/pages/OrderSuccessPage"));
 const OrdersPage = React.lazy(() => import("@/pages/OrdersPage"));
 const OrderDetailsPage = React.lazy(() => import("@/pages/OrderDetailsPage"));
 const NotFoundPage = React.lazy(() => import("@/pages/NotFoundPage"));
+const AboutPage = React.lazy(() => import("@/pages/AboutPage"));
+const ContactPage = React.lazy(() => import("@/pages/ContactPage"));
 
 // Analytics Tracker Component
 function AnalyticsTracker() {
@@ -57,6 +59,8 @@ function App() {
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/signup" element={<SignupPage />} />
                   
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />
                   <Route path="/order-success" element={<OrderSuccessPage />} />
                   

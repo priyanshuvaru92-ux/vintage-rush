@@ -1,64 +1,70 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import SectionHeading from "@/components/SectionHeading";
 import ProductCard from "@/components/ProductCard";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useProducts } from "@/hooks/useProducts";
+
+function SkeletonCard() {
+  return (
+    <div>
+      <div className="shimmer" style={{ aspectRatio: "3/4", width: "100%", borderRadius: "2px" }} />
+      <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
+        <div className="shimmer" style={{ height: "14px", width: "70%", borderRadius: "2px" }} />
+        <div className="shimmer" style={{ height: "12px", width: "40%", borderRadius: "2px" }} />
+      </div>
+    </div>
+  );
+}
 
 export default function NewArrivalsSection() {
   const { products, loading } = useProducts();
   const newArrivals = products.filter((p) => p.featured).slice(0, 4);
 
   return (
-    <section className="py-20 sm:py-28 bg-[#111111]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="New Arrivals"
-          subtitle="Fresh drops just landed. Be the first to own the latest streetwear essentials."
-        />
-
-        {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="space-y-4">
-                <Skeleton className="aspect-[3/4] w-full rounded-xl" />
-                <Skeleton className="h-4 w-2/3" />
-                <Skeleton className="h-4 w-1/3" />
-                <Skeleton className="h-5 w-1/4" />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {newArrivals.map((product, i) => (
-              <ProductCard key={product.id} product={product} index={i} />
-            ))}
-          </div>
-        )}
-
+    <section style={{ padding: "100px 0", background: "#0c0c0c" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+        
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 text-center"
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: "64px", display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "16px" }}
         >
-          <Link to="/shop">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center gap-3 px-8 py-3.5 border border-white/20 text-white font-inter text-sm tracking-widest uppercase rounded-full hover:border-secondary hover:text-secondary transition-all duration-300"
+          <div>
+            <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e", display: "block", marginBottom: "12px" }}>
+              — Just Landed
+            </span>
+            <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 400, lineHeight: 1, color: "#f5f0eb", margin: 0 }}>
+              New Arrivals
+            </h2>
+          </div>
+          <Link to="/shop?filter=new" style={{ textDecoration: "none" }}>
+            <motion.span
+              whileHover={{ gap: "16px" }}
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: '"DM Sans", sans-serif', fontSize: "11px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,240,235,0.5)", transition: "color 0.3s", cursor: "pointer" }}
             >
-              View All
-              <ArrowRight
-                size={16}
-                className="group-hover:translate-x-1 transition-transform duration-300"
-              />
-            </motion.button>
+              View All <ArrowRight size={14} />
+            </motion.span>
           </Link>
         </motion.div>
+
+        {/* Grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "24px" }} className="product-grid">
+          {loading
+            ? [1, 2, 3, 4].map(i => <SkeletonCard key={i} />)
+            : newArrivals.map((product, i) => (
+                <ProductCard key={product.id} product={product} index={i} />
+              ))
+          }
+        </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr !important; } }
+      `}</style>
     </section>
   );
 }

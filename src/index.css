@@ -1,55 +1,207 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap");
 
 /* ========================================
-   VINTAGE RUSH — Global Design System
+   VINTAGE RUSH — Design System v2.0
+   Premium Luxury Streetwear
    ======================================== */
 
 @theme {
-  --color-primary: #111111;
-  --color-secondary: #F5E9D7;
-  --color-accent: #4B352A;
-  --color-surface: #1a1a1a;
+  /* Core Palette */
+  --color-vr-black: #080808;
+  --color-vr-charcoal: #111111;
+  --color-vr-surface: #181818;
+  --color-vr-border: #242424;
+  --color-vr-white: #f5f0eb;
+  --color-vr-cream: #e8dfd0;
+  --color-vr-gold: #c9a96e;
+  --color-vr-gray: #666666;
+  --color-vr-gray-light: #999999;
+
+  /* Legacy aliases (keep for compatibility) */
+  --color-primary: #080808;
+  --color-secondary: #e8dfd0;
+  --color-accent: #c9a96e;
+  --color-surface: #181818;
   --color-surface-light: #222222;
-  --color-muted: #888888;
+  --color-muted: #666666;
 
-  --font-poppins: "Poppins", sans-serif;
-  --font-inter: "Inter", sans-serif;
-}
+  /* Typography */
+  --font-cormorant: "Cormorant Garamond", Georgia, serif;
+  --font-dm: "DM Sans", system-ui, sans-serif;
+  --font-mono: "Space Mono", monospace;
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #111111;
-}
-::-webkit-scrollbar-thumb {
-  background: #4B352A;
-  border-radius: 3px;
+  /* Legacy aliases */
+  --font-poppins: "DM Sans", system-ui, sans-serif;
+  --font-inter: "DM Sans", system-ui, sans-serif;
 }
 
-/* Selection */
+/* ==========================================
+   SCROLLBAR
+   ========================================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #080808; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #c9a96e; }
+
+/* ==========================================
+   SELECTION
+   ========================================== */
 ::selection {
-  background: #4B352A;
-  color: #F5E9D7;
+  background: #c9a96e;
+  color: #080808;
 }
 
-/* Smooth scroll */
+/* ==========================================
+   BASE
+   ========================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "DM Sans", system-ui, sans-serif;
+  background-color: #080808;
+  color: #f5f0eb;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
-/* Hide scrollbar on mobile filter drawer */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* ==========================================
+   TYPOGRAPHY UTILITIES
+   ========================================== */
+.font-display {
+  font-family: "Cormorant Garamond", Georgia, serif;
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.font-mono-vr {
+  font-family: "Space Mono", monospace;
 }
+
+/* ==========================================
+   GRAIN TEXTURE OVERLAY
+   ========================================== */
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================
+   ANIMATION UTILITIES
+   ========================================== */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #181818 25%, #242424 50%, #181818 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.6s ease forwards;
+}
+
+/* ==========================================
+   UTILITIES
+   ========================================== */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Luxury card hover */
+.card-hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* Image zoom */
+.img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+/* Text underline grow */
+.underline-grow {
+  position: relative;
+}
+.underline-grow::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #e8dfd0;
+  transition: width 0.3s ease;
+}
+.underline-grow:hover::after { width: 100%; }
+
+/* Gold accent line */
+.gold-line {
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: #c9a96e;
+}
+
+/* Button base */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: #e8dfd0;
+  color: #080808;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.btn-primary:hover { background: #f5f0eb; }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 32px;
+  background: transparent;
+  color: #f5f0eb;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid rgba(245,240,235,0.25);
+  cursor: pointer;
+  transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.btn-outline:hover {
+  border-color: #e8dfd0;
+  color: #e8dfd0;
+}
+.btn-outline:active { transform: scale(0.98); }

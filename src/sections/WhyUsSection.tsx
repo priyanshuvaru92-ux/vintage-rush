@@ -1,54 +1,52 @@
 import { motion } from "framer-motion";
-import { Award, Truck, Wallet, MessageCircle } from "lucide-react";
+import { Truck, MessageCircle, RotateCcw, Star } from "lucide-react";
 
 const features = [
   {
-    icon: Award,
+    icon: Star,
     title: "Premium Quality",
-    description:
-      "Crafted from the finest fabrics with meticulous attention to detail and durability.",
+    desc: "Crafted from carefully sourced fabrics. Every stitch is intentional.",
   },
   {
     icon: Truck,
     title: "Fast Delivery",
-    description:
-      "Swift shipping across India. Your order reaches you in 3-5 business days.",
-  },
-  {
-    icon: Wallet,
-    title: "Cash On Delivery",
-    description:
-      "Pay when you receive. No advance payment needed. 100% secure.",
+    desc: "Pan-India shipping with real-time tracking. We move at your pace.",
   },
   {
     icon: MessageCircle,
-    title: "Easy WhatsApp Ordering",
-    description:
-      "Order directly via WhatsApp. Quick, simple, and personal shopping experience.",
+    title: "WhatsApp Support",
+    desc: "Direct line to us. Order, track, or ask anything — we reply fast.",
+  },
+  {
+    icon: RotateCcw,
+    title: "Easy Returns",
+    desc: "7-day hassle-free return policy. Your satisfaction is our standard.",
   },
 ];
 
 export default function WhyUsSection() {
   return (
-    <section className="py-20 sm:py-28 bg-[#0e0e0e]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section style={{ padding: "100px 0", background: "#111111" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          style={{ textAlign: "center", marginBottom: "72px" }}
         >
-          <h2 className="font-poppins text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-            Why Vintage Rush?
+          <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e", display: "block", marginBottom: "12px" }}>
+            — Why Choose Us
+          </span>
+          <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 400, lineHeight: 1, color: "#f5f0eb", margin: 0 }}>
+            The Rush Difference
           </h2>
-          <p className="mt-4 font-inter text-base sm:text-lg text-white/40 max-w-2xl mx-auto">
-            More than just clothing — it&apos;s a lifestyle
-          </p>
-          <div className="mt-6 h-[2px] w-16 bg-secondary mx-auto" />
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        {/* Feature Cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", background: "rgba(255,255,255,0.05)" }} className="why-grid">
           {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
@@ -57,27 +55,37 @@ export default function WhyUsSection() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.12 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                style={{
+                  padding: "48px 36px",
+                  background: "#111111",
+                  transition: "background 0.4s ease",
+                  textAlign: "left",
+                  cursor: "default",
+                }}
+                onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#151515")}
+                onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#111111")}
               >
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  className="group p-8 rounded-2xl bg-[#161616] border border-white/5 hover:border-secondary/30 transition-all duration-500 text-center h-full"
-                >
-                  <div className="w-14 h-14 mx-auto rounded-xl bg-secondary/10 flex items-center justify-center mb-6 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <Icon size={24} className="text-secondary" />
-                  </div>
-                  <h3 className="font-poppins text-lg font-semibold text-white mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="font-inter text-sm text-white/40 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </motion.div>
+                <div style={{ width: "48px", height: "48px", border: "1px solid rgba(201,169,110,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "28px" }}>
+                  <Icon size={20} style={{ color: "#c9a96e" }} />
+                </div>
+                <h3 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "22px", fontWeight: 500, color: "#f5f0eb", marginBottom: "12px" }}>
+                  {feature.title}
+                </h3>
+                <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "rgba(245,240,235,0.4)", lineHeight: "1.8" }}>
+                  {feature.desc}
+                </p>
               </motion.div>
             );
           })}
         </div>
       </div>
+
+      <style>{`
+        .why-grid { grid-template-columns: repeat(4, 1fr) !important; }
+        @media (max-width: 1024px) { .why-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 480px) { .why-grid { grid-template-columns: 1fr !important; } }
+      `}</style>
     </section>
   );
 }
