@@ -65,6 +65,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // ALWAYS use the exact origin the user is currently on to prevent PKCE cross-origin blocks.
         // NOTE: This origin MUST be added to the Supabase URL Configuration -> Redirect URLs.
         redirectTo: window.location.origin,
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
       },
     });
     if (error) throw error;
