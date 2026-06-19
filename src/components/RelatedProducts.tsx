@@ -10,7 +10,7 @@ export default function RelatedProducts({ products }: RelatedProductsProps) {
   if (products.length === 0) return null;
 
   return (
-    <section className="py-16 sm:py-24 border-t border-white/5">
+    <section className="py-16 sm:py-24 border-t border-[#E8E2D9]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="You May Also Like"

@@ -45,11 +45,11 @@ export default function IntroAnimation({ onComplete }: { onComplete: () => void 
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.7, ease: 'easeInOut' }}
-          className="fixed inset-0 z-[9999] bg-[#080808] flex items-center justify-center"
+          className="fixed inset-0 z-[9999] bg-[#FAF8F5] flex items-center justify-center"
         >
           {/* Subtle background glow */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-96 h-96 rounded-full bg-[#c9a96e]/4 blur-[120px]" />
+            <div className="w-96 h-96 rounded-full bg-[#B8974E]/3 blur-[120px]" />
           </div>
 
           {/* Text */}
@@ -59,7 +59,7 @@ export default function IntroAnimation({ onComplete }: { onComplete: () => void 
               initial={{ opacity: 0.3, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.15, ease: 'easeOut' }}
-              className="font-display text-4xl sm:text-6xl md:text-7xl font-light tracking-[0.4em] text-[#f5f0eb] uppercase"
+              className="font-display text-4xl sm:text-6xl md:text-7xl font-light tracking-[0.4em] text-[#1C1917] uppercase"
             >
               {FRAMES[frameIndex]}
             </motion.p>
@@ -69,7 +69,7 @@ export default function IntroAnimation({ onComplete }: { onComplete: () => void 
               initial={{ scaleX: 0 }}
               animate={{ scaleX: frameIndex === FRAMES.length - 1 ? 1 : 0 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="mt-4 mx-auto h-[1px] w-24 bg-[#c9a96e] origin-left"
+              className="mt-4 mx-auto h-[1px] w-24 bg-[#B8974E] origin-left"
             />
           </div>
         </motion.div>

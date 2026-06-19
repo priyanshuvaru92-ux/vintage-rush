@@ -26,13 +26,13 @@ export default function OrderSuccessPage() {
   if (!state) return null;
 
   return (
-    <div className="min-h-screen bg-[#111111] pt-32 pb-16 flex items-center justify-center">
+    <div className="min-h-screen bg-[#FAF8F5] pt-32 pb-16 flex items-center justify-center">
       <div className="max-w-lg w-full mx-auto px-4 text-center">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", duration: 0.6 }}
-          className="w-20 h-20 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-6"
+          className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-200"
         >
           <CheckCircle2 size={40} />
         </motion.div>
@@ -41,16 +41,16 @@ export default function OrderSuccessPage() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="font-poppins text-3xl sm:text-4xl font-bold text-white mb-2"
+          className="font-poppins text-3xl sm:text-4xl font-bold text-[#1C1917] mb-2"
         >
-          Thank You For Ordering From Vintage Rush 🖤
+          Thank You For Ordering From Vintage Rush
         </motion.h1>
 
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="font-inter text-white/50 mb-8"
+          className="font-inter text-[#78716C] mb-8"
         >
           Your order has been successfully placed. We'll send you a confirmation email shortly.
         </motion.p>
@@ -59,20 +59,20 @@ export default function OrderSuccessPage() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 text-left"
+          className="bg-white border border-[#E8E2D9] rounded-lg p-6 mb-8 text-left"
         >
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="font-inter text-xs text-white/40 uppercase tracking-widest mb-1">Order ID</p>
-              <p className="font-mono text-sm text-white">{state.orderId.split('-')[0].toUpperCase()}</p>
+              <p className="font-inter text-xs text-[#78716C] uppercase tracking-widest mb-1 font-bold">Order ID</p>
+              <p className="font-mono text-sm text-[#1C1917] font-semibold">{state.orderId.split('-')[0].toUpperCase()}</p>
             </div>
             <div>
-              <p className="font-inter text-xs text-white/40 uppercase tracking-widest mb-1">Status</p>
-              <p className="font-inter text-sm text-secondary font-medium">{state.status}</p>
+              <p className="font-inter text-xs text-[#78716C] uppercase tracking-widest mb-1 font-bold">Status</p>
+              <p className="font-inter text-sm text-[#B8974E] font-semibold">{state.status}</p>
             </div>
             <div className="col-span-2">
-              <p className="font-inter text-xs text-white/40 uppercase tracking-widest mb-1">Payment Method</p>
-              <p className="font-inter text-sm text-white">
+              <p className="font-inter text-xs text-[#78716C] uppercase tracking-widest mb-1 font-bold">Payment Method</p>
+              <p className="font-inter text-sm text-[#1C1917] font-semibold">
                 {state.paymentMethod === 'COD' ? 'Cash on Delivery' : 'WhatsApp Payment'}
               </p>
             </div>
@@ -87,7 +87,8 @@ export default function OrderSuccessPage() {
         >
           <Link
             to="/shop"
-            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-secondary text-primary font-poppins text-sm font-semibold tracking-widest uppercase rounded-xl hover:bg-white transition-colors duration-300"
+            className="btn-primary w-full flex items-center justify-center gap-2 px-6 py-4"
+            style={{ textDecoration: "none" }}
           >
             <ShoppingBag size={18} />
             Continue Shopping
@@ -97,7 +98,8 @@ export default function OrderSuccessPage() {
             {user && (
               <Link
                 to="/orders"
-                className="flex-1 flex items-center justify-center gap-2 px-6 py-4 border border-white/20 text-white font-poppins text-sm font-semibold tracking-widest uppercase rounded-xl hover:border-secondary hover:text-secondary transition-colors duration-300"
+                className="flex-1 flex items-center justify-center gap-2 px-6 py-4 border border-[#C4B89F] text-[#1C1917] font-poppins text-sm font-semibold tracking-widest uppercase rounded-lg hover:border-[#1C1917] hover:bg-[#FAF8F5] transition-colors duration-300"
+                style={{ textDecoration: "none" }}
               >
                 <ListOrdered size={18} />
                 View Orders
@@ -107,7 +109,8 @@ export default function OrderSuccessPage() {
               href={state.waLink || "https://wa.me/919106485332"}
               target="_blank"
               rel="noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 border border-white/20 text-white font-poppins text-sm font-semibold tracking-widest uppercase rounded-xl hover:border-green-400 hover:text-green-400 transition-colors duration-300"
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 border border-[#C4B89F] text-[#1C1917] font-poppins text-sm font-semibold tracking-widest uppercase rounded-lg hover:border-green-600 hover:text-green-600 hover:bg-green-50 transition-colors duration-300"
+              style={{ textDecoration: "none" }}
             >
               <MessageCircle size={18} />
               Contact On WhatsApp

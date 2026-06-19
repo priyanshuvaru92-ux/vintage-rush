@@ -14,7 +14,7 @@ export default function LoginPage() {
   return (
     <>
       <SEO title="Sign In | Vintage Rush" description="Sign in to your Vintage Rush account." />
-      <div style={{ minHeight: "100vh", background: "#080808", display: "flex" }}>
+      <div style={{ minHeight: "100vh", background: "#FAF8F5", display: "flex" }}>
         
         {/* Left: Image panel (desktop only) */}
         <div style={{ flex: "0 0 45%", position: "relative", overflow: "hidden", display: "none" }} className="login-image-panel">
@@ -23,11 +23,11 @@ export default function LoginPage() {
             alt="Vintage Rush lifestyle"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
           />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, transparent, rgba(8,8,8,0.5))" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, transparent, rgba(250,248,245,0.4))" }} />
           <div style={{ position: "absolute", bottom: "48px", left: "48px" }}>
-            <p style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: "32px", fontWeight: 300, color: "#f5f0eb", lineHeight: 1.2 }}>
+            <p style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: "32px", fontWeight: 400, color: "#FAF8F5", lineHeight: 1.2, textShadow: "0 2px 10px rgba(0,0,0,0.3)" }}>
               "Wear the Trend.<br />
-              <span style={{ fontStyle: "italic", color: "#c9a96e" }}>Own the Rush."</span>
+              <span style={{ fontStyle: "italic", color: "#B8974E" }}>Own the Rush."</span>
             </p>
           </div>
         </div>

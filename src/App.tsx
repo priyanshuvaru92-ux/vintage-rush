@@ -33,8 +33,8 @@ function AnalyticsTracker() {
 }
 
 const PageLoader = () => (
-  <div className="min-h-screen bg-[#111111] flex items-center justify-center">
-    <Loader2 className="w-8 h-8 text-secondary animate-spin" />
+  <div className="min-h-screen bg-[#FAF8F5] flex items-center justify-center">
+    <Loader2 className="w-8 h-8 text-[#1C1917] animate-spin" />
   </div>
 );
 

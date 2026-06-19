@@ -29,7 +29,7 @@ export default function SortDropdown({ value, onChange }: SortDropdownProps) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg font-inter text-sm text-white/70 hover:border-white/30 transition-all duration-300"
+        className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E8E2D9] rounded-lg font-inter text-sm text-[#1C1917] hover:border-[#1C1917] transition-all duration-300"
       >
         <span>{currentLabel}</span>
         <ChevronDown
@@ -42,7 +42,7 @@ export default function SortDropdown({ value, onChange }: SortDropdownProps) {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-52 bg-[#1a1a1a] border border-white/10 rounded-xl overflow-hidden shadow-2xl z-30">
+        <div className="absolute right-0 top-full mt-2 w-52 bg-white border border-[#E8E2D9] rounded-xl overflow-hidden shadow-2xl z-30">
           {sortOptions.map((option) => (
             <button
               key={option.value}
@@ -53,9 +53,10 @@ export default function SortDropdown({ value, onChange }: SortDropdownProps) {
               className={cn(
                 "w-full px-4 py-3 text-left font-inter text-sm transition-all duration-200",
                 value === option.value
-                  ? "bg-secondary/10 text-secondary"
-                  : "text-white/60 hover:bg-white/5 hover:text-white"
+                  ? "bg-[#F5F1EB] text-[#B8974E] font-medium"
+                  : "text-[#78716C] hover:bg-[#FAF8F5] hover:text-[#1C1917]"
               )}
+              style={{ border: "none", cursor: "pointer" }}
             >
               {option.label}
             </button>

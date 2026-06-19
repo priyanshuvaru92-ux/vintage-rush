@@ -1,37 +1,38 @@
-@import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+@import "tailwindcss";
 
 /* ========================================
-   VINTAGE RUSH — Design System v2.0
-   Premium Luxury Streetwear
+   VINTAGE RUSH — Design System v3.0
+   Premium Luxury Streetwear — Light Theme
+   Inspired by wtflex.in aesthetic
    ======================================== */
 
 @theme {
-  /* Core Palette */
-  --color-vr-black: #080808;
-  --color-vr-charcoal: #111111;
-  --color-vr-surface: #181818;
-  --color-vr-border: #242424;
-  --color-vr-white: #f5f0eb;
-  --color-vr-cream: #e8dfd0;
-  --color-vr-gold: #c9a96e;
-  --color-vr-gray: #666666;
-  --color-vr-gray-light: #999999;
+  /* ── Light Palette ── */
+  --color-vr-bg:         #FAF8F5;   /* warm off-white page background */
+  --color-vr-surface:    #FFFFFF;   /* card/panel surfaces */
+  --color-vr-surface-2:  #F5F1EB;   /* alternate cream section bg */
+  --color-vr-surface-3:  #EDE8DF;   /* deeper cream for borders/accents */
+  --color-vr-border:     #E8E2D9;   /* subtle dividers */
+  --color-vr-text:       #1C1917;   /* primary charcoal */
+  --color-vr-text-2:     #44403C;   /* secondary dark brown-gray */
+  --color-vr-muted:      #78716C;   /* muted body copy */
+  --color-vr-gold:       #B8974E;   /* muted gold accent (darker for light bg) */
+  --color-vr-black:      #0A0A0A;   /* promo bar / marquee only */
+  --color-vr-white:      #FAF8F5;
 
-  /* Legacy aliases (keep for compatibility) */
-  --color-primary: #080808;
-  --color-secondary: #e8dfd0;
-  --color-accent: #c9a96e;
-  --color-surface: #181818;
-  --color-surface-light: #222222;
-  --color-muted: #666666;
+  /* Legacy aliases for components that still use old class names */
+  --color-primary:       #1C1917;
+  --color-secondary:     #1C1917;
+  --color-accent:        #B8974E;
+  --color-surface:       #FFFFFF;
+  --color-surface-light: #F5F1EB;
+  --color-muted:         #78716C;
 
   /* Typography */
   --font-cormorant: "Cormorant Garamond", Georgia, serif;
   --font-dm: "DM Sans", system-ui, sans-serif;
   --font-mono: "Space Mono", monospace;
-
-  /* Legacy aliases */
   --font-poppins: "DM Sans", system-ui, sans-serif;
   --font-inter: "DM Sans", system-ui, sans-serif;
 }
@@ -40,16 +41,16 @@
    SCROLLBAR
    ========================================== */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #080808; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #c9a96e; }
+::-webkit-scrollbar-track { background: #F5F1EB; }
+::-webkit-scrollbar-thumb { background: #C4B89F; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #B8974E; }
 
 /* ==========================================
    SELECTION
    ========================================== */
 ::selection {
-  background: #c9a96e;
-  color: #080808;
+  background: #B8974E;
+  color: #FAF8F5;
 }
 
 /* ==========================================
@@ -64,8 +65,8 @@ html {
 
 body {
   font-family: "DM Sans", system-ui, sans-serif;
-  background-color: #080808;
-  color: #f5f0eb;
+  background-color: #FAF8F5;
+  color: #1C1917;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
@@ -88,7 +89,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 1;
 }
@@ -101,7 +102,7 @@ body {
   100% { background-position: 200% 0; }
 }
 .shimmer {
-  background: linear-gradient(90deg, #181818 25%, #242424 50%, #181818 75%);
+  background: linear-gradient(90deg, #EDE8DF 25%, #F5F1EB 50%, #EDE8DF 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -112,6 +113,14 @@ body {
 }
 .animate-fade-up {
   animation: fade-up 0.6s ease forwards;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 18s linear infinite;
 }
 
 /* ==========================================
@@ -127,7 +136,7 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 16px 48px rgba(28,25,23,0.1);
 }
 
 /* Image zoom */
@@ -135,7 +144,7 @@ body {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .img-zoom:hover img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 /* Text underline grow */
@@ -149,7 +158,7 @@ body {
   left: 0;
   width: 0;
   height: 1px;
-  background: #e8dfd0;
+  background: #1C1917;
   transition: width 0.3s ease;
 }
 .underline-grow:hover::after { width: 100%; }
@@ -159,30 +168,38 @@ body {
   display: inline-block;
   width: 40px;
   height: 1px;
-  background: #c9a96e;
+  background: #B8974E;
 }
 
-/* Button base */
+/* ==========================================
+   BUTTON SYSTEM
+   ========================================== */
+
+/* Primary: charcoal bg, cream text */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 14px 32px;
-  background: #e8dfd0;
-  color: #080808;
+  background: #1C1917;
+  color: #FAF8F5;
   font-family: "DM Sans", sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  border: none;
+  border: 1px solid #1C1917;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
-.btn-primary:hover { background: #f5f0eb; }
+.btn-primary:hover {
+  background: #44403C;
+  border-color: #44403C;
+}
 .btn-primary:active { transform: scale(0.98); }
 
+/* Outline: charcoal border, charcoal text */
 .btn-outline {
   display: inline-flex;
   align-items: center;
@@ -190,18 +207,41 @@ body {
   gap: 8px;
   padding: 13px 32px;
   background: transparent;
-  color: #f5f0eb;
+  color: #1C1917;
   font-family: "DM Sans", sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  border: 1px solid rgba(245,240,235,0.25);
+  border: 1px solid #C4B89F;
   cursor: pointer;
-  transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.2s ease;
 }
 .btn-outline:hover {
-  border-color: #e8dfd0;
-  color: #e8dfd0;
+  border-color: #1C1917;
+  background: rgba(28,25,23,0.04);
 }
 .btn-outline:active { transform: scale(0.98); }
+
+/* Ghost: used inside dark sections */
+.btn-ghost-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 32px;
+  background: transparent;
+  color: #FAF8F5;
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid rgba(250,248,245,0.4);
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.btn-ghost-light:hover {
+  border-color: #FAF8F5;
+  background: rgba(250,248,245,0.08);
+}

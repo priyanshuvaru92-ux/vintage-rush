@@ -6,23 +6,23 @@ const words = ["Wear", "The", "Trend.", "Own", "The", "Rush."];
 
 export default function HeroSection() {
   return (
-    <section style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#080808" }}>
-      {/* Background Image */}
+    <section style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#FAF8F5" }}>
+      {/* Background Image with Light Overlays */}
       <div style={{ position: "absolute", inset: 0 }}>
         <img
           src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=1920&h=1080&fit=crop&q=85"
           alt="Vintage Rush premium streetwear"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", opacity: 0.35 }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", opacity: 0.3 }}
         />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #080808 40%, rgba(8,8,8,0.7) 70%, rgba(8,8,8,0.4))" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #080808 0%, transparent 50%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #FAF8F5 45%, rgba(250,248,245,0.85) 75%, rgba(250,248,245,0.5))" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #FAF8F5 0%, transparent 50%)" }} />
       </div>
 
       {/* Grain overlay */}
       <div className="grain-overlay" style={{ position: "absolute", inset: 0, pointerEvents: "none" }} />
 
-      {/* Gold glow */}
-      <div style={{ position: "absolute", top: "30%", left: "10%", width: "500px", height: "500px", borderRadius: "50%", background: "rgba(201,169,110,0.04)", filter: "blur(120px)", pointerEvents: "none" }} />
+      {/* Subtle light glow */}
+      <div style={{ position: "absolute", top: "30%", left: "10%", width: "500px", height: "500px", borderRadius: "50%", background: "rgba(184,151,78,0.06)", filter: "blur(120px)", pointerEvents: "none" }} />
 
       {/* Content */}
       <div style={{ position: "relative", maxWidth: "1280px", margin: "0 auto", padding: "0 24px", width: "100%" }}>
@@ -35,8 +35,8 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}
           >
-            <span style={{ display: "inline-block", width: "32px", height: "1px", background: "#c9a96e" }} />
-            <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#c9a96e" }}>
+            <span className="gold-line" />
+            <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", color: "#B8974E" }}>
               Premium Indian Streetwear
             </span>
           </motion.div>
@@ -54,10 +54,10 @@ export default function HeroSection() {
                     display: "inline-block",
                     fontFamily: '"Cormorant Garamond", Georgia, serif',
                     fontSize: "clamp(52px, 8vw, 96px)",
-                    fontWeight: 300,
+                    fontWeight: 400,
                     lineHeight: 1.0,
                     letterSpacing: "-0.02em",
-                    color: i >= 3 ? "#e8dfd0" : "#f5f0eb",
+                    color: i >= 3 ? "#B8974E" : "#1C1917",
                     fontStyle: i >= 3 ? "italic" : "normal",
                   }}
                 >
@@ -72,7 +72,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-            style={{ marginTop: "32px", fontFamily: '"DM Sans", sans-serif', fontSize: "15px", color: "rgba(245,240,235,0.45)", lineHeight: "1.8", maxWidth: "440px" }}
+            style={{ marginTop: "32px", fontFamily: '"DM Sans", sans-serif', fontSize: "15px", color: "#78716C", lineHeight: "1.8", maxWidth: "440px" }}
           >
             Based in Surat. Built for the streets. Elevate your wardrobe with pieces that define a generation.
           </motion.p>
@@ -118,9 +118,9 @@ export default function HeroSection() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2.5 }}
-          style={{ width: "1px", height: "48px", background: "linear-gradient(to bottom, rgba(201,169,110,0.8), transparent)" }}
+          style={{ width: "1px", height: "48px", background: "linear-gradient(to bottom, #B8974E, transparent)" }}
         />
-        <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "9px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(245,240,235,0.3)" }}>
+        <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "9px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#78716C" }}>
           Scroll
         </span>
       </motion.div>

@@ -7,7 +7,7 @@ const timelineSteps = orderStatusService.getTimelineSteps();
 export default function OrderTimeline({ currentStatus }: { currentStatus: string }) {
   if (currentStatus === 'Cancelled') {
     return (
-      <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl font-inter text-sm text-center">
+      <div className="p-4 bg-red-50 border border-red-200 text-red-600 rounded-lg font-inter text-sm text-center font-semibold">
         This order has been cancelled.
       </div>
     );
@@ -19,9 +19,9 @@ export default function OrderTimeline({ currentStatus }: { currentStatus: string
 
   return (
     <div className="relative">
-      <div className="absolute top-5 left-4 right-4 h-[2px] bg-white/10" />
+      <div className="absolute top-5 left-4 right-4 h-[2px] bg-[#E8E2D9]" />
       <div 
-        className="absolute top-5 left-4 h-[2px] bg-secondary transition-all duration-500" 
+        className="absolute top-5 left-4 h-[2px] bg-[#B8974E] transition-all duration-500" 
         style={{ width: `calc(${(Math.max(0, currentIndex) / (timelineSteps.length - 1)) * 100}% - 2rem)` }} 
       />
 
@@ -35,14 +35,14 @@ export default function OrderTimeline({ currentStatus }: { currentStatus: string
               <div 
                 className={cn(
                   "w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors duration-300 z-10",
-                  isCompleted ? "bg-secondary border-secondary text-primary" : "bg-[#111111] border-white/20 text-white/20"
+                  isCompleted ? "bg-[#B8974E] border-[#B8974E] text-[#FAF8F5]" : "bg-[#FAF8F5] border-[#E8E2D9] text-[#78716C]/40"
                 )}
               >
                 {isCompleted ? <Check size={18} /> : <div className="w-2 h-2 rounded-full bg-current" />}
               </div>
               <span className={cn(
                 "font-inter text-xs font-semibold uppercase tracking-widest mt-1",
-                isCurrent ? "text-secondary" : isCompleted ? "text-white/70" : "text-white/30"
+                isCurrent ? "text-[#B8974E]" : isCompleted ? "text-[#1C1917]" : "text-[#78716C]/40"
               )}>
                 {step}
               </span>

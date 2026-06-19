@@ -9,7 +9,7 @@ export default function NotFoundPage() {
       <SEO title="404 — Not Found | Vintage Rush" description="Page not found." />
       <div style={{
         minHeight: "100vh",
-        background: "#080808",
+        background: "#FAF8F5",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -24,7 +24,7 @@ export default function NotFoundPage() {
           fontFamily: '"Cormorant Garamond", serif',
           fontSize: "clamp(200px, 30vw, 400px)",
           fontWeight: 300,
-          color: "rgba(255,255,255,0.015)",
+          color: "rgba(28,25,23,0.03)",
           lineHeight: 1,
           userSelect: "none",
           pointerEvents: "none",
@@ -34,7 +34,7 @@ export default function NotFoundPage() {
         </div>
 
         {/* Gold glow */}
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "500px", height: "500px", borderRadius: "50%", background: "rgba(201,169,110,0.04)", filter: "blur(100px)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "500px", height: "500px", borderRadius: "50%", background: "rgba(184,151,78,0.04)", filter: "blur(100px)", pointerEvents: "none" }} />
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -43,18 +43,18 @@ export default function NotFoundPage() {
           style={{ textAlign: "center", position: "relative" }}
         >
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "24px" }}>
-            <span style={{ display: "inline-block", width: "32px", height: "1px", background: "#c9a96e" }} />
-            <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e" }}>
+            <span style={{ display: "inline-block", width: "32px", height: "1px", background: "#B8974E" }} />
+            <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8974E" }}>
               Page Not Found
             </span>
-            <span style={{ display: "inline-block", width: "32px", height: "1px", background: "#c9a96e" }} />
+            <span style={{ display: "inline-block", width: "32px", height: "1px", background: "#B8974E" }} />
           </div>
 
-          <h1 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(48px, 7vw, 80px)", fontWeight: 300, lineHeight: 1, color: "#f5f0eb", marginBottom: "20px" }}>
+          <h1 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(48px, 7vw, 80px)", fontWeight: 400, lineHeight: 1, color: "#1C1917", marginBottom: "20px" }}>
             You're Off the Map
           </h1>
 
-          <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "15px", color: "rgba(245,240,235,0.45)", marginBottom: "48px", maxWidth: "400px", lineHeight: "1.8", margin: "0 auto 48px" }}>
+          <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "15px", color: "#78716C", marginBottom: "48px", maxWidth: "400px", lineHeight: "1.8", margin: "0 auto 48px" }}>
             The page you're looking for doesn't exist or has been moved. Let's get you back on track.
           </p>
 

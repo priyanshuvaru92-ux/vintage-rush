@@ -27,16 +27,17 @@ export default class ErrorBoundary extends Component<Props, State> {
   public render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-[#111111] flex items-center justify-center p-4">
+        <div className="min-h-screen bg-[#FAF8F5] flex items-center justify-center p-4">
           <div className="text-center max-w-md">
-            <AlertTriangle size={64} className="text-secondary mx-auto mb-6 opacity-80" />
-            <h1 className="font-poppins text-2xl font-bold text-white mb-4">Something went wrong.</h1>
-            <p className="font-inter text-white/50 mb-8 text-sm">
+            <AlertTriangle size={64} className="text-[#B8974E] mx-auto mb-6 opacity-80" />
+            <h1 className="font-poppins text-2xl font-bold text-[#1C1917] mb-4">Something went wrong.</h1>
+            <p className="font-inter text-[#78716C] mb-8 text-sm">
               We've encountered an unexpected error. Please try refreshing the page or navigating back to safety.
             </p>
             <button
               onClick={() => window.location.href = '/'}
-              className="px-8 py-3 bg-secondary text-primary font-poppins text-sm font-semibold tracking-widest uppercase rounded-full hover:bg-white transition-colors duration-300"
+              className="btn-primary"
+              style={{ padding: "12px 32px" }}
             >
               Return Home
             </button>

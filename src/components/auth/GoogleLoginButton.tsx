@@ -16,19 +16,25 @@ export default function GoogleLoginButton({ label = 'Continue with Google' }: { 
         justifyContent: "center",
         gap: "12px",
         padding: "14px 24px",
-        background: "#f5f0eb",
-        color: "#080808",
+        background: "transparent",
+        color: "#1C1917",
         fontFamily: '"DM Sans", sans-serif',
         fontSize: "12px",
         fontWeight: 600,
         letterSpacing: "0.1em",
         textTransform: "uppercase",
-        border: "none",
+        border: "1px solid #C4B89F",
         cursor: "pointer",
-        transition: "background 0.3s ease",
+        transition: "all 0.3s ease",
       }}
-      onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.background = "#ffffff")}
-      onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.background = "#f5f0eb")}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLButtonElement).style.background = "#1C1917";
+        (e.currentTarget as HTMLButtonElement).style.color = "#FAF8F5";
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+        (e.currentTarget as HTMLButtonElement).style.color = "#1C1917";
+      }}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />

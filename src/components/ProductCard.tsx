@@ -31,7 +31,7 @@ export default memo(function ProductCard({ product, index = 0 }: ProductCardProp
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
     >
-      <Link to={`/product/${product.slug}`} style={{ textDecoration: "none", display: "block" }}>
+      <Link to={`/product/${product.slug}`} style={{ textDecoration: "none", display: "block" }} className="group">
         {/* Image Container */}
         <div
           className="img-zoom"
@@ -39,7 +39,8 @@ export default memo(function ProductCard({ product, index = 0 }: ProductCardProp
             position: "relative",
             overflow: "hidden",
             aspectRatio: "3/4",
-            background: "#181818",
+            background: "#EDE8DF",
+            borderRadius: "8px",
           }}
         >
           <img
@@ -49,11 +50,11 @@ export default memo(function ProductCard({ product, index = 0 }: ProductCardProp
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
 
-          {/* Gradient overlay on hover */}
+          {/* Overlay on hover */}
           <div
             style={{
               position: "absolute", inset: 0,
-              background: "linear-gradient(to top, rgba(8,8,8,0.7) 0%, transparent 50%)",
+              background: "linear-gradient(to top, rgba(28,25,23,0.06) 0%, transparent 60%)",
               opacity: 0, transition: "opacity 0.4s ease",
             }}
             className="card-overlay"
@@ -67,9 +68,9 @@ export default memo(function ProductCard({ product, index = 0 }: ProductCardProp
               position: "absolute", top: "12px", right: "12px",
               width: "36px", height: "36px",
               borderRadius: "50%",
-              background: "rgba(8,8,8,0.7)",
-              backdropFilter: "blur(8px)",
-              border: `1px solid ${wishlisted ? "rgba(201,169,110,0.5)" : "rgba(255,255,255,0.15)"}`,
+              background: "#FFFFFF",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+              border: `1px solid ${wishlisted ? "#B8974E" : "#E8E2D9"}`,
               display: "flex", alignItems: "center", justifyContent: "center",
               cursor: "pointer",
               transition: "all 0.3s ease",
@@ -81,20 +82,20 @@ export default memo(function ProductCard({ product, index = 0 }: ProductCardProp
           >
             <Heart
               size={15}
-              style={{ color: wishlisted ? "#c9a96e" : "rgba(245,240,235,0.7)" }}
-              fill={wishlisted ? "#c9a96e" : "none"}
+              style={{ color: wishlisted ? "#B8974E" : "#1C1917" }}
+              fill={wishlisted ? "#B8974E" : "none"}
             />
           </button>
 
           {/* Badges */}
           <div style={{ position: "absolute", top: "12px", left: "12px", display: "flex", flexDirection: "column", gap: "6px" }}>
             {product.featured && (
-              <span style={{ padding: "4px 10px", background: "#e8dfd0", color: "#080808", fontFamily: '"DM Sans", sans-serif', fontSize: "9px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+              <span style={{ padding: "4px 10px", background: "#1C1917", color: "#FAF8F5", fontFamily: '"DM Sans", sans-serif', fontSize: "9px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", borderRadius: "2px" }}>
                 New
               </span>
             )}
             {product.best_seller && (
-              <span style={{ padding: "4px 10px", background: "#c9a96e", color: "#080808", fontFamily: '"DM Sans", sans-serif', fontSize: "9px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+              <span style={{ padding: "4px 10px", background: "#B8974E", color: "#FAF8F5", fontFamily: '"DM Sans", sans-serif', fontSize: "9px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", borderRadius: "2px" }}>
                 Bestseller
               </span>
             )}
@@ -104,21 +105,23 @@ export default memo(function ProductCard({ product, index = 0 }: ProductCardProp
           <div
             style={{
               position: "absolute", bottom: 0, left: 0, right: 0,
-              padding: "16px",
+              padding: "12px",
               transform: "translateY(100%)",
               transition: "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
             className="quick-view"
           >
             <div style={{
-              background: "rgba(8,8,8,0.85)", backdropFilter: "blur(8px)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              background: "#FFFFFF",
+              border: "1px solid #E8E2D9",
+              borderRadius: "4px",
+              boxShadow: "0 8px 24px rgba(28,25,23,0.06)",
               padding: "10px",
               textAlign: "center",
               fontFamily: '"DM Sans", sans-serif',
-              fontSize: "10px", fontWeight: 600,
+              fontSize: "10px", fontWeight: 700,
               letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "#f5f0eb",
+              color: "#1C1917",
             }}>
               Quick View
             </div>
@@ -127,13 +130,13 @@ export default memo(function ProductCard({ product, index = 0 }: ProductCardProp
 
         {/* Info */}
         <div style={{ marginTop: "16px" }}>
-          <h3 style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "14px", fontWeight: 500, color: "#f5f0eb", marginBottom: "4px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", transition: "color 0.3s" }}>
+          <h3 style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "14px", fontWeight: 600, color: "#1C1917", marginBottom: "4px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", transition: "color 0.3s" }}>
             {product.name}
           </h3>
-          <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "12px", color: "rgba(245,240,235,0.35)", textTransform: "capitalize", marginBottom: "6px" }}>
+          <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "12px", color: "#78716C", textTransform: "capitalize", marginBottom: "6px" }}>
             {product.category}
           </p>
-          <p style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "18px", fontWeight: 500, color: "#e8dfd0" }}>
+          <p style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "18px", fontWeight: 600, color: "#1C1917" }}>
             ₹{product.price.toLocaleString("en-IN")}
           </p>
         </div>

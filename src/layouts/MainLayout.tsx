@@ -25,7 +25,7 @@ export default function MainLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#080808] text-[#f5f0eb]">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#1C1917]">
       {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
       {contentReady && (
         <>

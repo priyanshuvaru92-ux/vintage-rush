@@ -15,6 +15,6 @@ export const orderStatusService = {
       'Cancelled': { bg: 'bg-red-500/10', text: 'text-red-500' },
     };
 
-    return config[status] || { bg: 'bg-white/10', text: 'text-white' };
+    return config[status] || { bg: 'bg-[#1C1917]/10', text: 'text-[#1C1917]' };
   }
 };

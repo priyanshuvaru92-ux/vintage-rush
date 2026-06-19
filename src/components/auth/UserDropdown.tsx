@@ -27,7 +27,11 @@ export default function UserDropdown() {
 
   if (!user) {
     return (
-      <Link to="/login" className="hidden sm:block text-white/70 hover:text-secondary font-inter text-sm uppercase tracking-wide transition-colors">
+      <Link 
+        to="/login" 
+        className="hidden sm:block text-[#78716C] hover:text-[#1C1917] font-inter text-xs uppercase tracking-wider transition-colors font-semibold"
+        style={{ textDecoration: "none" }}
+      >
         Login
       </Link>
     );
@@ -40,9 +44,10 @@ export default function UserDropdown() {
     <div className="relative" ref={ref}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 text-white/70 hover:text-secondary transition-colors"
+        className="flex items-center gap-2 text-[#78716C] hover:text-[#1C1917] transition-colors"
+        style={{ background: "none", border: "none", cursor: "pointer" }}
       >
-        <div className="w-8 h-8 rounded-full bg-secondary text-primary flex items-center justify-center font-poppins font-bold text-xs">
+        <div className="w-8 h-8 rounded-full bg-[#1C1917] text-[#FAF8F5] flex items-center justify-center font-poppins font-bold text-xs">
           {initials}
         </div>
         <ChevronDown size={14} className={`transition-transform duration-200 hidden sm:block ${isOpen ? 'rotate-180' : ''}`} />
@@ -55,13 +60,13 @@ export default function UserDropdown() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-3 w-56 bg-[#1a1a1a] border border-white/10 rounded-xl overflow-hidden shadow-2xl z-50"
+            className="absolute right-0 mt-3 w-56 bg-white border border-[#E8E2D9] rounded-xl overflow-hidden shadow-2xl z-50"
           >
-            <div className="px-4 py-3 border-b border-white/10 bg-white/5">
-              <p className="font-poppins text-sm text-white truncate">
+            <div className="px-4 py-3 border-b border-[#E8E2D9] bg-[#FAF8F5]">
+              <p className="font-poppins text-sm text-[#1C1917] font-semibold truncate">
                 {user.user_metadata?.full_name || 'User'}
               </p>
-              <p className="font-inter text-xs text-white/50 truncate mt-0.5">
+              <p className="font-inter text-xs text-[#78716C] truncate mt-0.5">
                 {user.email}
               </p>
             </div>
@@ -69,22 +74,25 @@ export default function UserDropdown() {
               <Link
                 to="/account"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-3 py-2.5 text-sm font-inter text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                className="flex items-center gap-3 px-3 py-2.5 text-sm font-inter text-[#78716C] hover:text-[#1C1917] hover:bg-[#FAF8F5] rounded-lg transition-colors"
+                style={{ textDecoration: "none" }}
               >
                 <UserIcon size={16} />
                 My Account
               </Link>
               <Link
-                to="/account" // Placeholder, might have a dedicated wishlist page later
+                to="/account" // Placeholder
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-3 py-2.5 text-sm font-inter text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                className="flex items-center gap-3 px-3 py-2.5 text-sm font-inter text-[#78716C] hover:text-[#1C1917] hover:bg-[#FAF8F5] rounded-lg transition-colors"
+                style={{ textDecoration: "none" }}
               >
                 <Heart size={16} />
                 Wishlist
               </Link>
               <button
                 onClick={handleSignOut}
-                className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-inter text-red-400 hover:text-red-300 hover:bg-red-400/10 rounded-lg transition-colors"
+                className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-inter text-[#DC2626] hover:bg-red-50 rounded-lg transition-colors"
+                style={{ background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
               >
                 <LogOut size={16} />
                 Logout

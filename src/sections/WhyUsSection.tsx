@@ -26,7 +26,7 @@ const features = [
 
 export default function WhyUsSection() {
   return (
-    <section style={{ padding: "100px 0", background: "#111111" }}>
+    <section style={{ padding: "100px 0", background: "#FAF8F5" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
 
         {/* Heading */}
@@ -37,16 +37,16 @@ export default function WhyUsSection() {
           transition={{ duration: 0.6 }}
           style={{ textAlign: "center", marginBottom: "72px" }}
         >
-          <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e", display: "block", marginBottom: "12px" }}>
+          <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8974E", display: "block", marginBottom: "12px" }}>
             — Why Choose Us
           </span>
-          <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 400, lineHeight: 1, color: "#f5f0eb", margin: 0 }}>
+          <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 400, lineHeight: 1, color: "#1C1917", margin: 0 }}>
             The Rush Difference
           </h2>
         </motion.div>
 
-        {/* Feature Cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", background: "rgba(255,255,255,0.05)" }} className="why-grid">
+        {/* Feature Cards Grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "24px" }} className="why-grid">
           {features.map((feature, i) => {
             const Icon = feature.icon;
             return (
@@ -58,21 +58,23 @@ export default function WhyUsSection() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 style={{
                   padding: "48px 36px",
-                  background: "#111111",
-                  transition: "background 0.4s ease",
+                  background: "#FFFFFF",
+                  border: "1px solid #E8E2D9",
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 20px rgba(28,25,23,0.02)",
+                  transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
                   textAlign: "left",
                   cursor: "default",
                 }}
-                onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#151515")}
-                onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#111111")}
+                className="card-hover"
               >
-                <div style={{ width: "48px", height: "48px", border: "1px solid rgba(201,169,110,0.25)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "28px" }}>
-                  <Icon size={20} style={{ color: "#c9a96e" }} />
+                <div style={{ width: "48px", height: "48px", border: "1px solid rgba(184, 151, 78, 0.3)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "28px" }}>
+                  <Icon size={20} style={{ color: "#B8974E" }} />
                 </div>
-                <h3 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "22px", fontWeight: 500, color: "#f5f0eb", marginBottom: "12px" }}>
+                <h3 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "22px", fontWeight: 500, color: "#1C1917", marginBottom: "12px" }}>
                   {feature.title}
                 </h3>
-                <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "rgba(245,240,235,0.4)", lineHeight: "1.8" }}>
+                <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "#78716C", lineHeight: "1.8" }}>
                   {feature.desc}
                 </p>
               </motion.div>

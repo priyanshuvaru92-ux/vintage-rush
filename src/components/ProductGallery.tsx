@@ -29,7 +29,7 @@ export default memo(function ProductGallery({
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-surface-light cursor-zoom-in"
+        className="relative aspect-[3/4] rounded-lg overflow-hidden bg-[#EDE8DF] cursor-zoom-in"
         onMouseEnter={() => setIsZoomed(true)}
         onMouseLeave={() => setIsZoomed(false)}
         onMouseMove={handleMouseMove}
@@ -55,11 +55,12 @@ export default memo(function ProductGallery({
           <button
             key={i}
             onClick={() => setActiveIndex(i)}
-            className={`relative w-20 h-24 rounded-xl overflow-hidden border-2 transition-all duration-300 ${
+            className={`relative w-20 h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
               i === activeIndex
-                ? "border-secondary opacity-100"
+                ? "border-[#1C1917] opacity-100"
                 : "border-transparent opacity-50 hover:opacity-80"
             }`}
+            style={{ padding: 0, background: "none", cursor: "pointer" }}
           >
             <img
               src={img}

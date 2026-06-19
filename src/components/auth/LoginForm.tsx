@@ -33,8 +33,8 @@ export default function LoginForm() {
     padding: "0 0 12px 0",
     background: "transparent",
     border: "none",
-    borderBottom: "1px solid rgba(255,255,255,0.12)",
-    color: "#f5f0eb",
+    borderBottom: "1px solid #C4B89F",
+    color: "#1C1917",
     fontFamily: '"DM Sans", sans-serif',
     fontSize: "15px",
     outline: "none",
@@ -46,30 +46,30 @@ export default function LoginForm() {
       {/* Logo */}
       <div style={{ textAlign: "center", marginBottom: "48px" }}>
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "28px", fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: "#f5f0eb" }}>
+          <span style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "28px", fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", color: "#1C1917" }}>
             VINTAGE RUSH
           </span>
         </Link>
       </div>
 
       <div style={{ marginBottom: "36px" }}>
-        <h1 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "42px", fontWeight: 400, color: "#f5f0eb", marginBottom: "8px", lineHeight: 1 }}>
+        <h1 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "42px", fontWeight: 400, color: "#1C1917", marginBottom: "8px", lineHeight: 1 }}>
           Welcome Back
         </h1>
-        <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "14px", color: "rgba(245,240,235,0.45)" }}>
+        <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "14px", color: "#78716C" }}>
           Sign in to your account to continue.
         </p>
       </div>
 
       <form onSubmit={handleLogin}>
         {error && (
-          <div style={{ padding: "12px 16px", marginBottom: "24px", background: "rgba(220,38,38,0.08)", border: "1px solid rgba(220,38,38,0.2)", fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "#f87171" }}>
+          <div style={{ padding: "12px 16px", marginBottom: "24px", background: "#FEE2E2", border: "1px solid #FCA5A5", fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "#DC2626", borderRadius: "4px" }}>
             {error}
           </div>
         )}
 
         <div style={{ marginBottom: "32px" }}>
-          <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,240,235,0.4)", display: "block", marginBottom: "12px" }}>
+          <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#78716C", display: "block", marginBottom: "12px" }}>
             Email
           </label>
           <input
@@ -79,17 +79,17 @@ export default function LoginForm() {
             onChange={(e) => setEmail(e.target.value)}
             style={inputStyle}
             placeholder="you@example.com"
-            onFocus={e => (e.target.style.borderBottomColor = "#c9a96e")}
-            onBlur={e => (e.target.style.borderBottomColor = "rgba(255,255,255,0.12)")}
+            onFocus={e => (e.target.style.borderBottomColor = "#1C1917")}
+            onBlur={e => (e.target.style.borderBottomColor = "#C4B89F")}
           />
         </div>
 
         <div style={{ marginBottom: "40px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-            <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,240,235,0.4)" }}>
+            <label style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#78716C" }}>
               Password
             </label>
-            <a href="#" style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "12px", color: "#c9a96e", textDecoration: "none" }}>
+            <a href="#" style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "12px", color: "#B8974E", textDecoration: "none", fontWeight: 600 }}>
               Forgot password?
             </a>
           </div>
@@ -101,13 +101,13 @@ export default function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
               style={{ ...inputStyle, paddingRight: "40px" }}
               placeholder="••••••••"
-              onFocus={e => (e.target.style.borderBottomColor = "#c9a96e")}
-              onBlur={e => (e.target.style.borderBottomColor = "rgba(255,255,255,0.12)")}
+              onFocus={e => (e.target.style.borderBottomColor = "#1C1917")}
+              onBlur={e => (e.target.style.borderBottomColor = "#C4B89F")}
             />
             <button
               type="button"
               onClick={() => setShowPass(!showPass)}
-              style={{ position: "absolute", right: 0, top: "0", background: "none", border: "none", cursor: "pointer", color: "rgba(245,240,235,0.4)", padding: "4px" }}
+              style={{ position: "absolute", right: 0, top: "0", background: "none", border: "none", cursor: "pointer", color: "#78716C", padding: "4px" }}
             >
               {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
@@ -127,17 +127,17 @@ export default function LoginForm() {
       </form>
 
       <div style={{ position: "relative", textAlign: "center", marginBottom: "24px" }}>
-        <div style={{ position: "absolute", inset: "50% 0 0", borderTop: "1px solid rgba(255,255,255,0.08)" }} />
-        <span style={{ position: "relative", display: "inline-block", padding: "0 16px", background: "#080808", fontFamily: '"DM Sans", sans-serif', fontSize: "11px", color: "rgba(245,240,235,0.3)", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+        <div style={{ position: "absolute", inset: "50% 0 0", borderTop: "1px solid #E8E2D9" }} />
+        <span style={{ position: "relative", display: "inline-block", padding: "0 16px", background: "#FAF8F5", fontFamily: '"DM Sans", sans-serif', fontSize: "11px", color: "#78716C", letterSpacing: "0.15em", textTransform: "uppercase" }}>
           or
         </span>
       </div>
 
       <GoogleLoginButton />
 
-      <p style={{ textAlign: "center", fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "rgba(245,240,235,0.4)", marginTop: "32px" }}>
+      <p style={{ textAlign: "center", fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "#78716C", marginTop: "32px" }}>
         Don't have an account?{' '}
-        <Link to="/signup" style={{ color: "#e8dfd0", textDecoration: "none", fontWeight: 600 }}>
+        <Link to="/signup" style={{ color: "#1C1917", textDecoration: "none", fontWeight: 600 }}>
           Sign up
         </Link>
       </p>

@@ -31,7 +31,7 @@ const collections = [
 
 export default function CollectionsSection() {
   return (
-    <section style={{ padding: "100px 0", background: "#111111" }}>
+    <section style={{ padding: "100px 0", background: "#F5F1EB" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
 
         {/* Heading */}
@@ -42,16 +42,16 @@ export default function CollectionsSection() {
           transition={{ duration: 0.6 }}
           style={{ marginBottom: "64px", textAlign: "center" }}
         >
-          <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e", display: "block", marginBottom: "12px" }}>
+          <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8974E", display: "block", marginBottom: "12px" }}>
             — Explore Categories
           </span>
-          <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 400, lineHeight: 1, color: "#f5f0eb", margin: 0 }}>
+          <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 400, lineHeight: 1, color: "#1C1917", margin: 0 }}>
             Collections
           </h2>
         </motion.div>
 
         {/* 3-column editorial grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }} className="collections-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }} className="collections-grid">
           {collections.map((col, i) => (
             <motion.div
               key={col.id}
@@ -62,12 +62,13 @@ export default function CollectionsSection() {
             >
               <Link to={col.href} style={{ textDecoration: "none", display: "block" }}>
                 <div
-                  className="img-zoom"
+                  className="img-zoom card-hover"
                   style={{
                     position: "relative",
                     aspectRatio: "3/4",
                     overflow: "hidden",
-                    background: "#1a1a1a",
+                    background: "#EDE8DF",
+                    borderRadius: "8px",
                     cursor: "pointer",
                   }}
                 >
@@ -77,21 +78,21 @@ export default function CollectionsSection() {
                     loading="lazy"
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
-                  {/* Dark overlay */}
-                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(8,8,8,0.85) 0%, rgba(8,8,8,0.2) 50%, transparent 70%)" }} />
+                  {/* Dark overlay for text readability on images */}
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0.15) 50%, transparent 80%)" }} />
 
                   {/* Text */}
                   <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "32px 28px" }}>
-                    <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#c9a96e", marginBottom: "8px" }}>
+                    <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#B8974E", marginBottom: "8px" }}>
                       {col.tag}
                     </p>
-                    <h3 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(28px, 3vw, 42px)", fontWeight: 400, lineHeight: 1, color: "#f5f0eb", marginBottom: "4px" }}>
+                    <h3 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(28px, 3vw, 42px)", fontWeight: 400, lineHeight: 1, color: "#FAF8F5", marginBottom: "4px" }}>
                       {col.title}
                     </h3>
-                    <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "rgba(245,240,235,0.55)", marginBottom: "16px" }}>
+                    <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "rgba(250,248,245,0.7)", marginBottom: "16px" }}>
                       {col.subtitle}
                     </p>
-                    <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "#e8dfd0" }}>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "#FAF8F5" }}>
                       Shop Now <ArrowRight size={12} />
                     </span>
                   </div>

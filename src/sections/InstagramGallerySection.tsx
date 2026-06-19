@@ -12,7 +12,7 @@ const galleryImages = [
 
 export default function InstagramGallerySection() {
   return (
-    <section style={{ padding: "100px 0", background: "#0c0c0c" }}>
+    <section style={{ padding: "100px 0", background: "#F5F1EB" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
 
         {/* Heading */}
@@ -23,16 +23,16 @@ export default function InstagramGallerySection() {
           transition={{ duration: 0.6 }}
           style={{ textAlign: "center", marginBottom: "56px" }}
         >
-          <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e", display: "block", marginBottom: "12px" }}>
+          <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8974E", display: "block", marginBottom: "12px" }}>
             — @vintagerush
           </span>
-          <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 400, lineHeight: 1, color: "#f5f0eb", margin: 0 }}>
+          <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 400, lineHeight: 1, color: "#1C1917", margin: 0 }}>
             Follow Our World
           </h2>
         </motion.div>
 
         {/* Masonry-style Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "200px", gap: "8px" }} className="insta-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "200px", gap: "12px" }} className="insta-grid">
           {galleryImages.map((img, i) => (
             <motion.div
               key={img.id}
@@ -43,7 +43,8 @@ export default function InstagramGallerySection() {
               style={{
                 position: "relative",
                 overflow: "hidden",
-                background: "#1a1a1a",
+                background: "#EDE8DF",
+                borderRadius: "8px",
                 gridRow: img.tall ? "span 2" : "span 1",
                 cursor: "pointer",
               }}
@@ -59,7 +60,7 @@ export default function InstagramGallerySection() {
               <div
                 style={{
                   position: "absolute", inset: 0,
-                  background: "rgba(8,8,8,0.6)",
+                  background: "rgba(28,25,23,0.7)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   opacity: 0, transition: "opacity 0.3s ease",
                 }}
@@ -67,8 +68,8 @@ export default function InstagramGallerySection() {
                 onMouseLeave={e => (e.currentTarget.style.opacity = "0")}
               >
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-                  <Camera size={28} style={{ color: "#f5f0eb" }} />
-                  <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "#f5f0eb" }}>
+                  <Camera size={28} style={{ color: "#FAF8F5" }} />
+                  <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "11px", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "#FAF8F5" }}>
                     View Post
                   </span>
                 </div>

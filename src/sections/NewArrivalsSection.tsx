@@ -7,7 +7,7 @@ import { useProducts } from "@/hooks/useProducts";
 function SkeletonCard() {
   return (
     <div>
-      <div className="shimmer" style={{ aspectRatio: "3/4", width: "100%", borderRadius: "2px" }} />
+      <div className="shimmer" style={{ aspectRatio: "3/4", width: "100%", borderRadius: "8px" }} />
       <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
         <div className="shimmer" style={{ height: "14px", width: "70%", borderRadius: "2px" }} />
         <div className="shimmer" style={{ height: "12px", width: "40%", borderRadius: "2px" }} />
@@ -21,7 +21,7 @@ export default function NewArrivalsSection() {
   const newArrivals = products.filter((p) => p.featured).slice(0, 4);
 
   return (
-    <section style={{ padding: "100px 0", background: "#0c0c0c" }}>
+    <section style={{ padding: "100px 0", background: "#FAF8F5" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
         
         {/* Heading */}
@@ -33,17 +33,17 @@ export default function NewArrivalsSection() {
           style={{ marginBottom: "64px", display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "16px" }}
         >
           <div>
-            <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "#c9a96e", display: "block", marginBottom: "12px" }}>
+            <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8974E", display: "block", marginBottom: "12px" }}>
               — Just Landed
             </span>
-            <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 400, lineHeight: 1, color: "#f5f0eb", margin: 0 }}>
+            <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 400, lineHeight: 1, color: "#1C1917", margin: 0 }}>
               New Arrivals
             </h2>
           </div>
           <Link to="/shop?filter=new" style={{ textDecoration: "none" }}>
             <motion.span
-              whileHover={{ gap: "16px" }}
-              style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: '"DM Sans", sans-serif', fontSize: "11px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(245,240,235,0.5)", transition: "color 0.3s", cursor: "pointer" }}
+              whileHover={{ gap: "16px", color: "#1C1917" }}
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: '"DM Sans", sans-serif', fontSize: "11px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "#78716C", transition: "color 0.3s", cursor: "pointer" }}
             >
               View All <ArrowRight size={14} />
             </motion.span>

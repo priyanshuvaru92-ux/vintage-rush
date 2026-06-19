@@ -18,30 +18,31 @@ export default function OrderCard({ order }: OrderCardProps) {
   return (
     <Link 
       to={`/orders/${order.id}`}
-      className="block bg-[#1a1a1a] border border-white/5 rounded-2xl p-5 sm:p-6 hover:border-white/20 transition-all duration-300 group"
+      className="block bg-white border border-[#E8E2D9] rounded-lg p-5 sm:p-6 hover:border-[#1C1917] transition-all duration-300 group"
+      style={{ textDecoration: "none" }}
     >
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-white/50 group-hover:text-secondary group-hover:bg-secondary/10 transition-colors">
+          <div className="w-12 h-12 rounded-lg bg-[#FAF8F5] border border-[#E8E2D9] flex items-center justify-center text-[#78716C] group-hover:text-[#B8974E] transition-colors">
             <Package size={24} />
           </div>
           <div>
-            <h3 className="font-poppins text-lg font-bold text-white tracking-tight">Order #{order.id.split('-')[0].toUpperCase()}</h3>
-            <p className="font-inter text-xs text-white/40 mt-1">Placed on {date}</p>
+            <h3 className="font-poppins text-lg font-bold text-[#1C1917] tracking-tight">Order #{order.id.split('-')[0].toUpperCase()}</h3>
+            <p className="font-inter text-xs text-[#78716C]/60 mt-1 font-semibold">Placed on {date}</p>
           </div>
         </div>
         <div className="flex items-center justify-between sm:justify-end gap-6 sm:w-auto w-full">
           <StatusBadge status={order.status} />
-          <ChevronRight size={20} className="text-white/30 group-hover:text-white transition-colors sm:block hidden" />
+          <ChevronRight size={20} className="text-[#78716C]/40 group-hover:text-[#1C1917] transition-colors sm:block hidden" />
         </div>
       </div>
 
-      <div className="flex items-center justify-between pt-4 border-t border-white/5 font-inter text-sm">
-        <div className="text-white/60">
-          <span className="text-white font-medium">{itemCount}</span> {itemCount === 1 ? 'item' : 'items'}
+      <div className="flex items-center justify-between pt-4 border-t border-[#E8E2D9] font-inter text-sm">
+        <div className="text-[#78716C]">
+          <span className="text-[#1C1917] font-semibold">{itemCount}</span> {itemCount === 1 ? 'item' : 'items'}
         </div>
-        <div className="text-white/60">
-          Total: <span className="text-white font-medium ml-1">₹{order.total_price.toLocaleString('en-IN')}</span>
+        <div className="text-[#78716C]">
+          Total: <span className="text-[#1C1917] font-semibold ml-1">₹{order.total_price.toLocaleString('en-IN')}</span>
         </div>
       </div>
     </Link>
