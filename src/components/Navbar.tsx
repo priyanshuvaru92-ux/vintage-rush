@@ -5,6 +5,7 @@ import { Search, Heart, ShoppingBag, Menu, X } from "lucide-react";
 import UserDropdown from "@/components/auth/UserDropdown";
 import { useCart } from "@/hooks/useCart";
 import { useWishlist } from "@/hooks/useWishlist";
+import { useAuth } from "@/context/AuthContext";
 
 const navLinks = [
   { label: "Shop", href: "/shop" },
@@ -20,6 +21,7 @@ export default function Navbar() {
   const location = useLocation();
   const { cartItems } = useCart();
   const { wishlistItems } = useWishlist();
+  const { user, signOut } = useAuth();
 
   const cartCount = cartItems.reduce((sum: number, item: any) => sum + (item.quantity || 1), 0);
   const wishlistCount = wishlistItems.length;
@@ -272,6 +274,68 @@ export default function Navbar() {
                     </Link>
                   </motion.div>
                 ))}
+
+                {/* Mobile Auth actions */}
+                <motion.div
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: navLinks.length * 0.07 }}
+                >
+                  {user ? (
+                    <>
+                      <Link
+                        to="/account"
+                        style={{
+                          padding: "12px 0",
+                          fontFamily: '"DM Sans", sans-serif',
+                          fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase",
+                          color: location.pathname === "/account" ? "#B8974E" : "#78716C",
+                          textDecoration: "none",
+                          borderBottom: "1px solid #E8E2D9",
+                          display: "block",
+                        }}
+                      >
+                        My Account
+                      </Link>
+                      <button
+                        onClick={async () => {
+                          await signOut();
+                          setMobileOpen(false);
+                        }}
+                        style={{
+                          width: "100%",
+                          textAlign: "left",
+                          padding: "12px 0",
+                          background: "none",
+                          border: "none",
+                          fontFamily: '"DM Sans", sans-serif',
+                          fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase",
+                          color: "#DC2626",
+                          cursor: "pointer",
+                          borderBottom: "1px solid #E8E2D9",
+                          display: "block",
+                        }}
+                      >
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <Link
+                      to="/login"
+                      style={{
+                        padding: "12px 0",
+                        fontFamily: '"DM Sans", sans-serif',
+                        fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase",
+                        color: location.pathname === "/login" ? "#B8974E" : "#78716C",
+                        textDecoration: "none",
+                        borderBottom: "1px solid #E8E2D9",
+                        display: "block",
+                      }}
+                    >
+                      Login / Register
+                    </Link>
+                  )}
+                </motion.div>
               </div>
 
               <div style={{ padding: "24px", borderTop: "1px solid #E8E2D9" }}>
