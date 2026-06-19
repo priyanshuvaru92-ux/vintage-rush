@@ -38,6 +38,8 @@ const PageLoader = () => (
   </div>
 );
 
+import { isEnvValid } from "@/lib/supabase";
+
 function App() {
   useEffect(() => {
     initAnalytics();
@@ -45,6 +47,26 @@ function App() {
 
   return (
     <ErrorBoundary>
+      {!isEnvValid && (
+        <div style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          background: "#EF4444",
+          color: "#FFFFFF",
+          textAlign: "center",
+          padding: "12px 20px",
+          fontSize: "13px",
+          fontFamily: '"DM Sans", sans-serif',
+          fontWeight: 600,
+          zIndex: 99999,
+          boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
+          letterSpacing: "0.02em"
+        }}>
+          ⚠️ Supabase environment variables are missing or fallback to default. Please restart your Vite dev server (`npm run dev`) after verifying your .env.local file.
+        </div>
+      )}
       <HelmetProvider>
         <AuthProvider>
           <Router>

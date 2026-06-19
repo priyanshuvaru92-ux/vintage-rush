@@ -11,7 +11,22 @@ export default function ProtectedRoute() {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
+    let timeoutId: any;
+
     async function verifyAuth() {
+      const hasAuthHash = window.location.hash.includes('access_token') || 
+                          window.location.hash.includes('id_token') || 
+                          window.location.hash.includes('error=');
+
+      if (hasAuthHash && !contextUser) {
+        // Wait for AuthProvider to parse token and login. Set a safety timeout to prevent infinite spinner.
+        timeoutId = setTimeout(() => {
+          setAuthenticated(false);
+          setChecking(false);
+        }, 2500);
+        return;
+      }
+
       if (contextUser) {
         setAuthenticated(true);
         setChecking(false);
@@ -33,6 +48,10 @@ export default function ProtectedRoute() {
     if (!contextLoading) {
       verifyAuth();
     }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [contextUser, contextLoading]);
 
   if (contextLoading || checking) {
