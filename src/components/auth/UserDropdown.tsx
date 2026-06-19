@@ -47,8 +47,16 @@ export default function UserDropdown() {
         className="flex items-center gap-2 text-[#78716C] hover:text-[#1C1917] transition-colors"
         style={{ background: "none", border: "none", cursor: "pointer" }}
       >
-        <div className="w-8 h-8 rounded-full bg-[#1C1917] text-[#FAF8F5] flex items-center justify-center font-poppins font-bold text-xs">
-          {initials}
+        <div className="w-8 h-8 rounded-full bg-[#1C1917] text-[#FAF8F5] flex items-center justify-center font-poppins font-bold text-xs overflow-hidden border border-[#E8E2D9]">
+          {user.user_metadata?.avatar_url || user.user_metadata?.picture ? (
+            <img 
+              src={user.user_metadata.avatar_url || user.user_metadata.picture} 
+              alt="Profile" 
+              style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+            />
+          ) : (
+            initials
+          )}
         </div>
         <ChevronDown size={14} className={`transition-transform duration-200 hidden sm:block ${isOpen ? 'rotate-180' : ''}`} />
       </button>

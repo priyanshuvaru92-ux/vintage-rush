@@ -95,9 +95,36 @@ export default function AccountPage() {
             {/* Profile Info Card */}
             <div className="bg-white border border-[#E8E2D9] rounded-lg p-6 sm:p-8">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                <div>
-                  <h2 className="font-poppins text-xl font-semibold text-[#1C1917]">Profile Information</h2>
-                  <p className="font-inter text-xs text-[#78716C]/60 mt-1">Joined {joinedDate}</p>
+                <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                  <div style={{
+                    width: "60px",
+                    height: "60px",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border: "1px solid #E8E2D9",
+                    background: "#1C1917",
+                    color: "#FAF8F5",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: '"Cormorant Garamond", serif',
+                    fontSize: "20px",
+                    fontWeight: 700,
+                  }}>
+                    {user?.user_metadata?.avatar_url || user?.user_metadata?.picture ? (
+                      <img 
+                        src={user.user_metadata.avatar_url || user.user_metadata.picture} 
+                        alt="Profile" 
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                      />
+                    ) : (
+                      user?.email?.substring(0, 2).toUpperCase() || 'U'
+                    )}
+                  </div>
+                  <div>
+                    <h2 className="font-poppins text-xl font-semibold text-[#1C1917]">Profile Information</h2>
+                    <p className="font-inter text-xs text-[#78716C]/60 mt-1">Joined {joinedDate}</p>
+                  </div>
                 </div>
                 <button className="px-5 py-2 border border-[#C4B89F] text-[#1C1917] font-inter text-xs font-semibold uppercase tracking-widest rounded-lg hover:border-[#1C1917] hover:bg-[#FAF8F5] transition-colors duration-300" style={{ background: "none", cursor: "pointer" }}>
                   Edit Profile
