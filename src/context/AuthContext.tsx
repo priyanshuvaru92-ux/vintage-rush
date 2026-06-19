@@ -78,9 +78,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        // ALWAYS use the exact origin the user is currently on to prevent PKCE cross-origin blocks.
-        // NOTE: This origin MUST be added to the Supabase URL Configuration -> Redirect URLs.
-        redirectTo: `${window.location.origin}/account`,
         queryParams: {
           access_type: 'offline',
           prompt: 'consent',
