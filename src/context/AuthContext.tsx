@@ -25,6 +25,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Check for OAuth errors in the URL
+    const params = new URLSearchParams(window.location.search || window.location.hash.substring(1));
+    const errorDesc = params.get('error_description');
+    if (errorDesc) {
+      console.error('OAuth Error:', errorDesc);
+      alert('Login Error: ' + errorDesc.replace(/\+/g, ' '));
+      // Clean up URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -49,20 +59,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signInWithGoogle = async () => {
-    // Vercel deployment URLs can cause PKCE cross-origin failures.
-    // Explicitly fallback to VITE_SITE_URL if configured, otherwise use the origin.
-    // Ensure the redirect URL matches what is configured in Supabase exactly.
-    let redirectUrl = import.meta.env.VITE_SITE_URL || window.location.origin;
-    
-    // Some OAuth providers require the exact match including a trailing slash or path.
-    if (!redirectUrl.endsWith('/')) {
-      redirectUrl += '/';
-    }
-
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: redirectUrl,
+        // ALWAYS use the exact origin the user is currently on to prevent PKCE cross-origin blocks.
+        // NOTE: This origin MUST be added to the Supabase URL Configuration -> Redirect URLs.
+        redirectTo: window.location.origin,
       },
     });
     if (error) throw error;
