@@ -19,28 +19,29 @@ const supportLinks = [
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#F5F1EB", borderTop: "1px solid #E8E2D9" }}>
-      {/* Top Section */}
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "80px 24px 60px" }}>
+    <footer style={{ background: "#FAF8F5", borderTop: "1px solid #E8E2D9", position: "relative", zIndex: 10 }}>
+      
+      {/* Top Section: Links & Contact */}
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "100px 24px 80px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "48px" }} className="footer-grid">
 
-          {/* Brand */}
+          {/* Brand Info */}
           <div className="footer-col-brand">
             <Link to="/" style={{ textDecoration: "none" }}>
-              <h2 style={{
-                fontFamily: '"Cormorant Garamond", Georgia, serif',
-                fontSize: "24px",
+              <h3 style={{
+                fontFamily: '"Cinzel", "Cormorant Garamond", serif',
+                fontSize: "20px",
                 fontWeight: 700,
-                letterSpacing: "0.25em",
+                letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 color: "#1C1917",
-                marginBottom: "16px",
+                marginBottom: "20px",
               }}>
-                Vintage Rush
-              </h2>
+                VINTAGE RUSH
+              </h3>
             </Link>
             <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "#78716C", lineHeight: "1.8", maxWidth: "260px", marginBottom: "28px" }}>
-              Premium Indian streetwear born in Surat. We blend timeless vintage aesthetics with contemporary street culture.
+              Premium Indian streetwear born in Surat. Fusing subculture aesthetics with modern luxury construction.
             </p>
             <div style={{ display: "flex", gap: "12px" }}>
               {[
@@ -55,9 +56,9 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={label}
                   style={{
-                    width: "38px", height: "38px",
+                    width: "36px", height: "36px",
                     borderRadius: "50%",
-                    border: "1px solid #C4B89F",
+                    border: "1px solid #E8E2D9",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     color: "#78716C",
                     textDecoration: "none",
@@ -68,20 +69,20 @@ export default function Footer() {
                     (e.currentTarget as HTMLAnchorElement).style.color = "#1C1917";
                   }}
                   onMouseLeave={e => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "#C4B89F";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "#E8E2D9";
                     (e.currentTarget as HTMLAnchorElement).style.color = "#78716C";
                   }}
                 >
-                  <Icon size={16} />
+                  <Icon size={14} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Shop */}
+          {/* Navigation */}
           <div className="footer-col">
             <h4 style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#1C1917", marginBottom: "24px" }}>
-              Shop
+              Sitemap
             </h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
               {shopLinks.map(link => (
@@ -99,10 +100,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Support */}
+          {/* Customer Service */}
           <div className="footer-col">
             <h4 style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#1C1917", marginBottom: "24px" }}>
-              Support
+              Service
             </h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
               {supportLinks.map(item => (
@@ -119,20 +120,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact Details */}
           <div className="footer-col">
             <h4 style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "10px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#1C1917", marginBottom: "24px" }}>
-              Contact Us
+              Studio
             </h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
               <li style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
-                <MapPin size={15} style={{ color: "#B8974E", flexShrink: 0, marginTop: "2px" }} />
+                <MapPin size={14} style={{ color: "#1C1917", flexShrink: 0, marginTop: "2px" }} />
                 <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "#78716C", lineHeight: "1.6" }}>
                   Surat, Gujarat, India
                 </span>
               </li>
               <li style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <Phone size={15} style={{ color: "#B8974E", flexShrink: 0 }} />
+                <Phone size={14} style={{ color: "#1C1917", flexShrink: 0 }} />
                 <a
                   href="tel:+919106485332"
                   style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "#78716C", textDecoration: "none", transition: "color 0.3s" }}
@@ -143,7 +144,7 @@ export default function Footer() {
                 </a>
               </li>
               <li style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <Mail size={15} style={{ color: "#B8974E", flexShrink: 0 }} />
+                <Mail size={14} style={{ color: "#1C1917", flexShrink: 0 }} />
                 <a
                   href="mailto:priyanshuvaru16@gmail.com"
                   style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "13px", color: "#78716C", textDecoration: "none", transition: "color 0.3s", wordBreak: "break-all" }}
@@ -179,9 +180,9 @@ export default function Footer() {
                     (e.currentTarget as HTMLAnchorElement).style.color = "#1C1917";
                   }}
                 >
-                  <MessageCircle size={13} />
+                  <MessageCircle size={12} />
                   WhatsApp Us
-                  <ArrowUpRight size={12} />
+                  <ArrowUpRight size={11} />
                 </a>
               </li>
             </ul>
@@ -189,8 +190,31 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div style={{ borderTop: "1px solid #E8E2D9", maxWidth: "1280px", margin: "0 auto", padding: "20px 24px", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
+      {/* Massive Brand Typographic Statement */}
+      <div style={{
+        textAlign: "center",
+        borderTop: "1px solid #E8E2D9",
+        padding: "60px 24px",
+        overflow: "hidden"
+      }}>
+        <h2 style={{
+          fontFamily: '"Cinzel", "Cormorant Garamond", Georgia, serif',
+          fontSize: "clamp(2rem, 11vw, 8.5rem)",
+          fontWeight: 700,
+          letterSpacing: "0.32em",
+          color: "#1C1917",
+          lineHeight: 1,
+          margin: 0,
+          textIndent: "0.32em", // offsets trailing letter spacing for exact center alignment
+          textTransform: "uppercase",
+          opacity: 0.95
+        }} className="footer-title-large">
+          VINTAGE RUSH
+        </h2>
+      </div>
+
+      {/* Bottom Bar: Copyright & Terms */}
+      <div style={{ borderTop: "1px solid #E8E2D9", maxWidth: "1280px", margin: "0 auto", padding: "24px", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
         <p style={{ fontFamily: '"DM Sans", sans-serif', fontSize: "11px", color: "#78716C", letterSpacing: "0.08em" }}>
           © 2026 Vintage Rush. All rights reserved.
         </p>
@@ -208,7 +232,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Responsive grid */}
       <style>{`
         .footer-grid { grid-template-columns: repeat(4, 1fr) !important; }
         @media (max-width: 1024px) {
@@ -216,6 +239,10 @@ export default function Footer() {
         }
         @media (max-width: 640px) {
           .footer-grid { grid-template-columns: 1fr !important; }
+          .footer-title-large {
+            letter-spacing: 0.15em !important;
+            text-indent: 0.15em !important;
+          }
         }
       `}</style>
     </footer>
