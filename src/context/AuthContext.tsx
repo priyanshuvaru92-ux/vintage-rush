@@ -26,20 +26,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Check for OAuth errors in the URL
-    const params = new URLSearchParams(window.location.search || window.location.hash.substring(1));
-    const errorDesc = params.get('error_description');
-    if (errorDesc) {
+    const searchParams = new URLSearchParams(window.location.search);
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const code = searchParams.get('code') || hashParams.get('code');
+    const errorParam = searchParams.get('error') || hashParams.get('error');
+    const errorDesc = searchParams.get('error_description') || hashParams.get('error_description');
+
+    if (errorParam) {
       console.error('OAuth Error:', errorDesc);
-      alert('Login Error: ' + errorDesc.replace(/\+/g, ' '));
-      // Clean up URL
+      alert(`SUPABASE REDIRECT ERROR:\n${errorParam}\n\nDescription: ${errorDesc?.replace(/\+/g, ' ')}`);
       window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (code) {
+      // Check if code verifier exists
+      let hasVerifier = false;
+      for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i)?.includes('code-verifier')) {
+          hasVerifier = true;
+          break;
+        }
+      }
+      if (!hasVerifier) {
+        alert(`CRITICAL PKCE ERROR:\nWe received the login code from Google, but the browser's local storage is missing the secret verifier!\n\nThis happens if you started the login on one Vercel URL (like a preview URL) but Supabase redirected you to a DIFFERENT URL (like the main production URL).\n\nYou MUST test the login on the exact same domain that is set in your Supabase Site URL.`);
+      }
     }
 
     // Get initial session
     supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error) {
-        console.error('GetSession Error:', error);
-        alert('Session Error: ' + error.message);
+        alert('SUPABASE GET_SESSION ERROR: ' + error.message);
       }
       setSession(session);
       setUser(session?.user ?? null);
@@ -48,12 +62,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('Auth Event:', event, session?.user?.email);
       if (event === 'SIGNED_OUT') {
-        alert('You were signed out.');
+        // Only alert if we just lost a session
+        console.log('Signed out event fired.');
       }
       if (event === 'SIGNED_IN') {
-        alert('Successfully signed in as: ' + session?.user?.email);
+        alert('SUCCESS! The login token was successfully verified. You are now logged in as: ' + session?.user?.email);
       }
       
       setSession(session);
@@ -78,6 +92,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
+        // We MUST return to the EXACT same origin to prevent PKCE code-verifier loss.
+        redirectTo: window.location.origin,
         queryParams: {
           access_type: 'offline',
           prompt: 'consent',
