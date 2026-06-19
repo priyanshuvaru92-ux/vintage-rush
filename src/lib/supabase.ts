@@ -1,7 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL?.trim();
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim()?.replace(/[\r\n]/g, '');
+// Strict regex sanitization: JWT keys only contain alphanumeric characters, dots, dashes, and underscores.
+// URLs only contain alphanumeric, colon, slashes, dots, dashes, and underscores.
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL?.replace(/[^a-zA-Z0-9:._\-\/]/g, '');
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.replace(/[^a-zA-Z0-9._-]/g, '');
 
 export const isEnvValid = 
   !!supabaseUrl && 

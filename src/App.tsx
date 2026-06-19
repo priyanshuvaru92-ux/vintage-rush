@@ -43,6 +43,27 @@ import { isEnvValid } from "@/lib/supabase";
 function App() {
   useEffect(() => {
     initAnalytics();
+
+    // Check for auth errors in the hash or URL search query parameters (e.g. from Google OAuth failures)
+    const handleAuthRedirectErrors = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      
+      const errorCode = searchParams.get('error') || hashParams.get('error');
+      const errorDesc = searchParams.get('error_description') || hashParams.get('error_description');
+
+      if (errorCode || errorDesc) {
+        console.error('Supabase Auth Redirect Error:', { errorCode, errorDesc });
+        alert(
+          `⚠️ Authentication Callback Error:\n\n` +
+          `Error: ${errorCode || 'Unknown'}\n` +
+          `Details: ${decodeURIComponent(errorDesc || '').replace(/\+/g, ' ')}\n\n` +
+          `Please check your Supabase Dashboard under Auth -> Providers -> Google settings (Client ID, Client Secret, or Redirect URIs).`
+        );
+      }
+    };
+
+    handleAuthRedirectErrors();
   }, []);
 
   return (
