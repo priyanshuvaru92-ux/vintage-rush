@@ -36,7 +36,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (error) {
+        console.error('GetSession Error:', error);
+        alert('Session Error: ' + error.message);
+      }
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
@@ -44,12 +48,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log('Auth Event:', event, session?.user?.email);
+      if (event === 'SIGNED_OUT') {
+        alert('You were signed out.');
+      }
+      if (event === 'SIGNED_IN') {
+        alert('Successfully signed in as: ' + session?.user?.email);
+      }
+      
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
       
       if (event === 'SIGNED_IN' && session?.user) {
-        await mergeGuestData(session.user.id);
+        try {
+          await mergeGuestData(session.user.id);
+        } catch (err) {
+          console.error('Merge data error:', err);
+        }
       }
     });
 
@@ -64,7 +80,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       options: {
         // ALWAYS use the exact origin the user is currently on to prevent PKCE cross-origin blocks.
         // NOTE: This origin MUST be added to the Supabase URL Configuration -> Redirect URLs.
-        redirectTo: window.location.origin,
+        redirectTo: `${window.location.origin}/account`,
         queryParams: {
           access_type: 'offline',
           prompt: 'consent',
