@@ -49,10 +49,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signInWithGoogle = async () => {
+    // Vercel deployment URLs can cause PKCE cross-origin failures.
+    // Explicitly fallback to VITE_SITE_URL if configured, otherwise use the origin.
+    // Ensure the redirect URL matches what is configured in Supabase exactly.
+    let redirectUrl = import.meta.env.VITE_SITE_URL || window.location.origin;
+    
+    // Some OAuth providers require the exact match including a trailing slash or path.
+    if (!redirectUrl.endsWith('/')) {
+      redirectUrl += '/';
+    }
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: window.location.origin,
+        redirectTo: redirectUrl,
       },
     });
     if (error) throw error;
